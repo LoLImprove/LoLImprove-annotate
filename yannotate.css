@@ -1,0 +1,5 @@
+/* We need a way to know if the video is in fullscreen mode */
+.support-fullscreen {
+  position: absolute;
+  z-index: 2147483647;
+}
