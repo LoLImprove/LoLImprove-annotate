@@ -1,0 +1,24 @@
+{
+  "name": "em-yannotate",
+  "version": "0.0.0",
+  "author": "Gabriel Dehan",
+  "license": "WTFYT",
+  "private": true,
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-sass": "~0.8.1",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-qunit": "~0.2.2",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-neuter": "~0.4.0",
+    "grunt-ember-templates": "~0.4.10",
+    "grunt-jsdoc": "*",
+    "grunt-neuter": "~0.4.0",
+    "grunt-bower-task": "~0.4.0",
+    "grunt-release-it": "~0.2.0"
+  }
+}
