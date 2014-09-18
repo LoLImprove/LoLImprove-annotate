@@ -41,7 +41,7 @@ module.exports = function (grunt) {
         includeSourceURL: false,
         separator: "\n"
       },
-      "dist/em-yannotate.js":  ["build/src/main.js", "build/src/templates.js"]
+      "dist/ember-yannotate.js":  ["build/src/main.js", "build/src/templates.js"]
     },
 
     clean: [
@@ -88,9 +88,9 @@ module.exports = function (grunt) {
         },
 
         files: {
-          './dist/em-yannotate.min.js': [
+          './dist/ember-yannotate.min.js': [
             // Include dist in bundle
-            './dist/em-yannotate.js'
+            './dist/ember-yannotate.js'
           ]
         }
       }
