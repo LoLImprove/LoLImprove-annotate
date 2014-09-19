@@ -23,9 +23,24 @@ YoutubeIframeAPI.prototype.onPlayerReady = (function(event) {
  * Private: Callback called when the player's state changes
  */
 YoutubeIframeAPI.prototype.onPlayerStateChange = (function(event) {
-   //
+  switch(event.data) {
+  case YT.PlayerState.ENDED:
+    //
+    break;
+  case YT.PlayerState.PLAYING:
+    YoutubeAPI.onPlayerStarted();
+    break;
+  case YT.PlayerState.PAUSED:
+    //
+    break;
+  case YT.PlayerState.BUFFERING:
+    //
+    break;
+  case YT.PlayerState.CUED:
+      //
+    break;
+  }
 });
-
 
 YoutubeIframeAPI.prototype.stopOnClick = (function(element) {
   var self = this;
@@ -44,32 +59,31 @@ YoutubeIframeAPI.prototype.scale = (function(height, width) {
   this.video.width = width;
 });
 
-YoutubeIframeAPI.prototype.ready = (function() {
-  this.ready = true;
-});
-// When the Youtube Iframe API is loaded, a global variable is set.
-window.onYouTubeIframeAPIReady = function() {
-  console.log('hello2');
-  this.ready = true;
-
-  if (YoutubeAPI.video.id) {
-    YoutubeAPI.player = new YT.Player('yannotate-player', {
-      height: YoutubeAPI.video.height,
-      width: YoutubeAPI.video.width,
-      videoId: YoutubeAPI.video.id,
+YoutubeIframeAPI.prototype.createPlayer = (function() {
+  if (this.video.id) {
+    this.player = new YT.Player('yannotate-player', {
+      height: this.video.height,
+      width: this.video.width,
+      videoId: this.video.id,
       playerVars: {
         autohide: 1,
         wmode: 'transparent',
         theme: 'light'
       },
       events: {
-        'onReady': YoutubeAPI.onPlayerReady,
-        'onStateChange': YoutubeAPI.onPlayerStateChange
+        'onReady': this.onPlayerReady,
+        'onStateChange': this.onPlayerStateChange
       }
     });
   }
+});
 
+// When the Youtube Iframe API is loaded, a global variable is set.
+window.onYouTubeIframeAPIReady = function() {
+  YoutubeAPI.ready = true;
+  YoutubeAPI.createPlayer();
 };
+
 
 // Bootstraps the Youtube API and the player
 

@@ -34,7 +34,15 @@ Yannotate = window._Yannotate = (function(playerElement, opts) {
   this.opts = opts;
 
   YoutubeAPI.loadVideoById(this.opts.videoId);
+
+  // Callback
+  YoutubeAPI.onPlayerStarted = this.opts.onPlayerStarted;
+
   this.setVideoDimensions();
+
+  if (YoutubeAPI.ready && YoutubeAPI.player === undefined) {
+    YoutubeAPI.createPlayer();
+  }
 });
 
 Yannotate.prototype.setVideoDimensions = (function() {
@@ -78,9 +86,24 @@ YoutubeIframeAPI.prototype.onPlayerReady = (function(event) {
  * Private: Callback called when the player's state changes
  */
 YoutubeIframeAPI.prototype.onPlayerStateChange = (function(event) {
-   //
+  switch(event.data) {
+  case YT.PlayerState.ENDED:
+    //
+    break;
+  case YT.PlayerState.PLAYING:
+    YoutubeAPI.onPlayerStarted();
+    break;
+  case YT.PlayerState.PAUSED:
+    //
+    break;
+  case YT.PlayerState.BUFFERING:
+    //
+    break;
+  case YT.PlayerState.CUED:
+      //
+    break;
+  }
 });
-
 
 YoutubeIframeAPI.prototype.stopOnClick = (function(element) {
   var self = this;
@@ -99,32 +122,31 @@ YoutubeIframeAPI.prototype.scale = (function(height, width) {
   this.video.width = width;
 });
 
-YoutubeIframeAPI.prototype.ready = (function() {
-  this.ready = true;
-});
-// When the Youtube Iframe API is loaded, a global variable is set.
-window.onYouTubeIframeAPIReady = function() {
-  console.log('hello2');
-  this.ready = true;
-
-  if (YoutubeAPI.video.id) {
-    YoutubeAPI.player = new YT.Player('yannotate-player', {
-      height: YoutubeAPI.video.height,
-      width: YoutubeAPI.video.width,
-      videoId: YoutubeAPI.video.id,
+YoutubeIframeAPI.prototype.createPlayer = (function() {
+  if (this.video.id) {
+    this.player = new YT.Player('yannotate-player', {
+      height: this.video.height,
+      width: this.video.width,
+      videoId: this.video.id,
       playerVars: {
         autohide: 1,
         wmode: 'transparent',
         theme: 'light'
       },
       events: {
-        'onReady': YoutubeAPI.onPlayerReady,
-        'onStateChange': YoutubeAPI.onPlayerStateChange
+        'onReady': this.onPlayerReady,
+        'onStateChange': this.onPlayerStateChange
       }
     });
   }
+});
 
+// When the Youtube Iframe API is loaded, a global variable is set.
+window.onYouTubeIframeAPIReady = function() {
+  YoutubeAPI.ready = true;
+  YoutubeAPI.createPlayer();
 };
+
 
 // Bootstraps the Youtube API and the player
 
@@ -155,21 +177,34 @@ Ember.Handlebars.registerBoundHelper('excerpt', function(string, length) {
 
 Ember.Yannotate.YannotateComponent = Ember.Component.extend({
   layoutName: 'components/yannotate',
-  actions: {
-  },
-
   init: function() {
+    this._super();
+
     this.current_user = this.get("user");
     this.replay = this.get("replay");
   },
 
   didInsertElement: function() {
-    $('#yannotate-player').yannotate({
-      videoId: this.get("replay").video_id,
-      dimensions: 'relative',
-    });
-  }
+    var self = this,
+        replayId = self.get("replay").video_id;
 
+    $('#yannotate-player').yannotate({
+      videoId: replayId,
+      dimensions: 'relative',
+      onPlayerStarted: function() {
+        self.set('isAnalysing', true);
+      }
+    });
+  },
+  actions: {
+    startAnalysis: function() {
+      this.set('isAnalysing', true);
+      YoutubeAPI.player.playVideo();
+    },
+    addTimeLineEntry: function() {
+      console.log(YoutubeAPI.player.getCurrentTime())
+    }
+  }
 });
 
 Ember.Handlebars.helper('yannotate-ui', Ember.Yannotate.YannotateComponent)
@@ -207,8 +242,27 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["yannotate-player"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("\n      <button ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "addGeneralComment", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Add a general comment</button>\n      <button ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "addTimeLineEntry", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Add an entry to timeline</button>\n    ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("\n      <button ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "startAnalysis", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Analyse !</button>\n    ");
+  return buffer;
+  }
 
   data.buffer.push("<div class=\"replay-header\">\n  <h2>");
   data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "replay.champion", options) : helperMissing.call(depth0, "capitalize", "replay.champion", options))));
@@ -239,7 +293,13 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push("</li>\n      <li>");
   stack1 = helpers._triageMustache.call(depth0, "replay.patch", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</li>\n    </ul>\n  </div>\n\n</div> <!-- replay-information -->\n");
+  data.buffer.push("</li>\n    </ul>\n  </div>\n\n  <div class=\"replay-toolbar\">\n    ");
+  stack1 = helpers._triageMustache.call(depth0, "poney", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    ");
+  stack1 = helpers['if'].call(depth0, "isAnalysing", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n  </div>\n</div> <!-- replay-information -->\n");
   return buffer;
   
 });

@@ -19,7 +19,15 @@ Yannotate = window._Yannotate = (function(playerElement, opts) {
   this.opts = opts;
 
   YoutubeAPI.loadVideoById(this.opts.videoId);
+
+  // Callback
+  YoutubeAPI.onPlayerStarted = this.opts.onPlayerStarted;
+
   this.setVideoDimensions();
+
+  if (YoutubeAPI.ready && YoutubeAPI.player === undefined) {
+    YoutubeAPI.createPlayer();
+  }
 });
 
 Yannotate.prototype.setVideoDimensions = (function() {
