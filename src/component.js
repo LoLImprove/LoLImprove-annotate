@@ -1,18 +1,16 @@
 Ember.Yannotate.YannotateComponent = Ember.Component.extend({
   layoutName: 'components/yannotate',
   actions: {
-    hello: function(name) {
-      console.log("Hello", name);
-    }
   },
 
   init: function() {
-    console.log('init', this.get('person'));
+    this.current_user = this.get("user");
+    this.replay = this.get("replay");
   },
 
   didInsertElement: function() {
-    $('#player').yannotate({
-      videoId: 'cEA7YFDGumY',
+    $('#yannotate-player').yannotate({
+      videoId: this.get("replay").video_id,
       dimensions: 'relative',
     });
   }

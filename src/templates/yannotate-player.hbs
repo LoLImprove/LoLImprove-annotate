@@ -1,1 +1,29 @@
-<div id="player"></div>
+<div class="replay-header">
+  <h2>{{capitalize replay.champion}} vs {{capitalize replay.matchup}} - {{capitalize replay.lane}} lane</h2>
+  <strong class="replay-match-result">{{upcase replay.result}}</strong>
+</div>
+
+<div class="replay-container">
+  <div id="yannotate-player"></div>
+</div>
+
+<div class="replay-data">
+
+  <div class="player-information">
+    <h3>{{capitalize replay.user.name}}</h3>
+    <strong class="player-league">{{capitalize replay.user.league}}</strong>
+  </div>
+
+  <div class="replay-description">
+    {{excerpt replay.description}}
+  </div>
+
+  <div class="replay-information">
+    <ul>
+      <li>{{replay.kda.k}}/{{replay.kda.d}}//{{replay.kda.a}}</li>
+      <li>{{replay.length}}</li>
+      <li>{{replay.patch}}</li>
+    </ul>
+  </div>
+
+</div> <!-- replay-information -->

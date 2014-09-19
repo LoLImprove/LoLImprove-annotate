@@ -100,7 +100,10 @@ module.exports = function (grunt) {
     watch: {
       grunt: {
         files: ["Gruntfile.js"],
-        tasks: ["default"]
+        tasks: ["default"],
+        options: {
+          spawn: false
+        }
       },
       code: {
         files: ["src/**/*.js", "dependencies/**/*.js", "vendor/**/*.js"],
@@ -120,13 +123,18 @@ module.exports = function (grunt) {
                 "yannotate-app/app/**/*.js", "yannotate-app/app/**/*.hbs",
                 "yannotate-app/app/**/*.css", "yannotate-app/app/**/*.scss"
                ],
-        tasks: ["build"]
+        tasks: ["build"],
+        options: {
+          spawn: false
+        }
       }
     }
   });
 
   // Build tasks
 grunt.registerTask("build", ["clean:app", "clean:build", "copy", "emberTemplates", "neuter"]);
+
+  grunt.registerTask("build_watch", ["build", "watch:all"])
 
   grunt.registerTask("dist", ["clean:dist", "build", "uglify"]);
 

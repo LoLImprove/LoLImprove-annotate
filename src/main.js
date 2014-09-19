@@ -7,8 +7,11 @@ if (Ember.libraries) {
   Ember.libraries.register('Ember Yannotate', Ember.Yannotate.VERSION)
 }
 
-require('build/src/component');
-require('build/src/views');
 
 require('build/src/lib/jquery-yannotate');
 require('build/src/lib/youtube');
+
+require('build/src/helpers/format-helpers')
+
+require('build/src/component');
+require('build/src/views');

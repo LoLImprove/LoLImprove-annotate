@@ -10,6 +10,7 @@ var YoutubeIframeAPI = window._YoutubeIframeAPI = (function() {
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
   this.video = {};
+  this.ready = false;
 });
 
 /*
@@ -43,23 +44,31 @@ YoutubeIframeAPI.prototype.scale = (function(height, width) {
   this.video.width = width;
 });
 
-
+YoutubeIframeAPI.prototype.ready = (function() {
+  this.ready = true;
+});
 // When the Youtube Iframe API is loaded, a global variable is set.
 window.onYouTubeIframeAPIReady = function() {
-  YoutubeAPI.player = new YT.Player('player', {
-    height: YoutubeAPI.video.height,
-    width: YoutubeAPI.video.width,
-    videoId: YoutubeAPI.video.id,
-    playerVars: {
-      autohide: 1,
-      wmode: 'transparent',
-      theme: 'light'
-    },
-    events: {
-      'onReady': YoutubeAPI.onPlayerReady,
-      'onStateChange': YoutubeAPI.onPlayerStateChange
-    }
-  });
+  console.log('hello2');
+  this.ready = true;
+
+  if (YoutubeAPI.video.id) {
+    YoutubeAPI.player = new YT.Player('yannotate-player', {
+      height: YoutubeAPI.video.height,
+      width: YoutubeAPI.video.width,
+      videoId: YoutubeAPI.video.id,
+      playerVars: {
+        autohide: 1,
+        wmode: 'transparent',
+        theme: 'light'
+      },
+      events: {
+        'onReady': YoutubeAPI.onPlayerReady,
+        'onStateChange': YoutubeAPI.onPlayerStateChange
+      }
+    });
+  }
+
 };
 
 // Bootstraps the Youtube API and the player
