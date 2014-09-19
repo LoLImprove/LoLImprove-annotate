@@ -13,6 +13,8 @@ var app = new EmberApp({
   getEnvJSON: require('./config/environment')
 });
 
+app.import('../dist/ember-yannotate.js');
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //

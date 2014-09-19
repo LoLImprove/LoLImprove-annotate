@@ -44,10 +44,11 @@ module.exports = function (grunt) {
       "dist/ember-yannotate.js":  ["build/src/main.js", "build/src/templates.js"]
     },
 
-    clean: [
-      "./dist",
-      "./build"
-    ],
+    clean: {
+      build: ["./build"],
+      dist: ["./dist"],
+      app: ["./yannotate-app/tmp/dist"]
+    },
 
     jsdoc: {
       all: {
@@ -103,23 +104,31 @@ module.exports = function (grunt) {
       },
       code: {
         files: ["src/**/*.js", "dependencies/**/*.js", "vendor/**/*.js"],
-        tasks: ["neuter"]
+        tasks: ["clean:app", ,"clean:build", "neuter"]
       },
       handlebars: {
         files: ["src/**/*.hbs"],
-        tasks: ["emberTemplates", "neuter"]
+        tasks: ["clean:app", , "clean:build", "emberTemplates", "neuter"]
       },
       sass: {
         files: ["src/**/*.scss"],
-        tasks: ["sass"]
+        tasks: ["clean:app", "clean:build", "sass"]
+      },
+      all: {
+        files: [
+                "src/**/*.js", "src/**/*.hbs",
+                "yannotate-app/app/**/*.js", "yannotate-app/app/**/*.hbs",
+                "yannotate-app/app/**/*.css", "yannotate-app/app/**/*.scss"
+               ],
+        tasks: ["build"]
       }
     }
   });
 
   // Build tasks
-  grunt.registerTask("build", ["copy", "emberTemplates", "neuter"]);
+grunt.registerTask("build", ["clean:app", "clean:build", "copy", "emberTemplates", "neuter"]);
 
-  grunt.registerTask("dist", ["build", "uglify"]);
+  grunt.registerTask("dist", ["clean:dist", "build", "uglify"]);
 
-  grunt.registerTask("default", ["dist", "watch"]);
+  grunt.registerTask("default", ["dist", "watch:all", "watch:grunt"]);
 };
