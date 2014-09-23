@@ -13,7 +13,7 @@ var app = new EmberApp({
   getEnvJSON: require('./config/environment')
 });
 
-app.import('../dist/ember-yannotate.js');
+app.import('./bower_components/dist/ember-yannotate.js');
 app.import('./bower_components/bootstrap/dist/css/bootstrap.min.css');
 app.import('./bower_components/bootstrap/dist/js/bootstrap.min.js');
 

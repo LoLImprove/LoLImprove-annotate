@@ -132,7 +132,8 @@ module.exports = function (grunt) {
   });
 
   // Build tasks
-grunt.registerTask("build", ["clean:app", "clean:build", "copy", "emberTemplates", "neuter"]);
+  //grunt.registerTask("build", ["clean:app", "clean:build", "copy", "emberTemplates", "neuter"]);
+  grunt.registerTask("build", ["clean:build", "copy", "emberTemplates", "neuter"]);
 
   grunt.registerTask("build_watch", ["build", "watch:all"])
 

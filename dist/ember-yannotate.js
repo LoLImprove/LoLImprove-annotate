@@ -309,7 +309,7 @@ function program1(depth0,data) {
   data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "analysis.user.name", options) : helperMissing.call(depth0, "capitalize", "analysis.user.name", options))));
   data.buffer.push("\n      <strong>");
   data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "analysis.user.league", options) : helperMissing.call(depth0, "capitalize", "analysis.user.league", options))));
-  data.buffer.push("</strong>\n    </div>\n\n\n    ");
+  data.buffer.push("</strong>\n    </div>\n\n    ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.GeneralComment", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push("\n    ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.Timeline", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
