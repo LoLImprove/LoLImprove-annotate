@@ -5,6 +5,7 @@ Ember.Yannotate.YannotateComponent = Ember.Component.extend({
 
     this.current_user = this.get("user");
     this.replay = this.get("replay");
+    this.set('isCurrentAnalyst', false);
   },
 
   didInsertElement: function() {
@@ -18,6 +19,11 @@ Ember.Yannotate.YannotateComponent = Ember.Component.extend({
         self.set('isAnalysing', true);
       }
     });
+
+    if (this.replay.user.id == this.user.id) {
+      this.set('isCurrentAnalyst', true);
+    }
+
   },
   actions: {
     startAnalysis: function() {
@@ -25,9 +31,9 @@ Ember.Yannotate.YannotateComponent = Ember.Component.extend({
       YoutubeAPI.player.playVideo();
     },
     addTimeLineEntry: function() {
-      console.log(YoutubeAPI.player.getCurrentTime())
+      console.log(YoutubeAPI.player.getCurrentTime());
     }
   }
 });
 
-Ember.Handlebars.helper('yannotate-ui', Ember.Yannotate.YannotateComponent)
+Ember.Handlebars.helper('yannotate-ui', Ember.Yannotate.YannotateComponent);

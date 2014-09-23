@@ -10,6 +10,9 @@ if (Ember.libraries) {
 }
 
 
+// Lib dependencies
+
+
 })();
 (function() {
 
@@ -156,6 +159,125 @@ window.YoutubeAPI = new window._YoutubeIframeAPI();
 })();
 (function() {
 
+// Components
+
+
+})();
+(function() {
+
+Ember.Yannotate.YannotateComponent = Ember.Component.extend({
+  layoutName: 'components/yannotate',
+  init: function() {
+    this._super();
+
+    this.current_user = this.get("user");
+    this.replay = this.get("replay");
+    this.set('isCurrentAnalyst', false);
+  },
+
+  didInsertElement: function() {
+    var self = this,
+        replayId = self.get("replay").video_id;
+
+    $('#yannotate-player').yannotate({
+      videoId: replayId,
+      dimensions: 'relative',
+      onPlayerStarted: function() {
+        self.set('isAnalysing', true);
+      }
+    });
+
+    if (this.replay.user.id == this.user.id) {
+      this.set('isCurrentAnalyst', true);
+    }
+
+  },
+  actions: {
+    startAnalysis: function() {
+      this.set('isAnalysing', true);
+      YoutubeAPI.player.playVideo();
+    },
+    addTimeLineEntry: function() {
+      console.log(YoutubeAPI.player.getCurrentTime());
+    }
+  }
+});
+
+Ember.Handlebars.helper('yannotate-ui', Ember.Yannotate.YannotateComponent);
+
+
+})();
+(function() {
+
+// Views
+
+
+})();
+(function() {
+
+Ember.Yannotate.PlayerContainer =  Ember.View.extend({
+  templateName: 'yannotate-player',
+  classNames: ['ember-yannotate-container']
+});
+
+Ember.Yannotate.AnalysesContainer =  Ember.View.extend({
+  templateName: 'analyses-container',
+  classNames: ['analyses-container']
+});
+
+Ember.Yannotate.GeneralComment =  Ember.View.extend({
+  templateName: 'analysis/general-comment',
+  classNames: ['general-comment']
+});
+
+Ember.Yannotate.Timeline =  Ember.View.extend({
+  tagName: 'ul',
+  templateName: 'analysis/timeline',
+  classNames: ['timeline']
+});
+
+Ember.Yannotate.TimelineEntry =  Ember.View.extend({
+  tagName: 'li',
+  templateName: 'analysis/timeline-entry',
+  classNames: ['timeline-entry'],
+  isEditingEntry: false,
+  actions: {
+    editEntry: function() {
+      this.set('isEditingEntry', true);
+    },
+    saveEntry: function() {
+      console.log('saving the world');
+      this.set('isEditingEntry', false);
+    }
+  }
+});
+
+
+})();
+(function() {
+
+// View specific helpers
+
+
+})();
+(function() {
+
+Ember.Yannotate.EditEntryHelper = Ember.TextField.extend({
+  didInsertElement: function() {
+    this.$().focus();
+  },
+  focusOut: function() {
+    console.log('focused out');
+    this.get('parentView').send('saveEntry');
+  }
+});
+
+Ember.Handlebars.helper('edit-entry', Ember.Yannotate.EditEntryHelper);
+
+
+})();
+(function() {
+
 Ember.Handlebars.registerBoundHelper('capitalize', function(string) {
   return string.capitalize();
 });
@@ -175,56 +297,142 @@ Ember.Handlebars.registerBoundHelper('excerpt', function(string, length) {
 })();
 (function() {
 
-Ember.Yannotate.YannotateComponent = Ember.Component.extend({
-  layoutName: 'components/yannotate',
-  init: function() {
-    this._super();
+Ember.TEMPLATES["analyses-container"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
 
-    this.current_user = this.get("user");
-    this.replay = this.get("replay");
-  },
-
-  didInsertElement: function() {
-    var self = this,
-        replayId = self.get("replay").video_id;
-
-    $('#yannotate-player').yannotate({
-      videoId: replayId,
-      dimensions: 'relative',
-      onPlayerStarted: function() {
-        self.set('isAnalysing', true);
-      }
-    });
-  },
-  actions: {
-    startAnalysis: function() {
-      this.set('isAnalysing', true);
-      YoutubeAPI.player.playVideo();
-    },
-    addTimeLineEntry: function() {
-      console.log(YoutubeAPI.player.getCurrentTime())
-    }
+function program1(depth0,data) {
+  
+  var buffer = '', helper, options;
+  data.buffer.push("\n  <div class=\"analysis\">\n    <div class=\"analyst-information\">\n      ");
+  data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "analysis.user.name", options) : helperMissing.call(depth0, "capitalize", "analysis.user.name", options))));
+  data.buffer.push("\n      <strong>");
+  data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "analysis.user.league", options) : helperMissing.call(depth0, "capitalize", "analysis.user.league", options))));
+  data.buffer.push("</strong>\n    </div>\n\n\n    ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.GeneralComment", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("\n    ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.Timeline", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("\n  </div>\n");
+  return buffer;
   }
+
+  stack1 = helpers.each.call(depth0, "analysis", "in", "replay.analyses", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  return buffer;
+  
 });
 
-Ember.Handlebars.helper('yannotate-ui', Ember.Yannotate.YannotateComponent)
+Ember.TEMPLATES["analysis/general-comment"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 
-})();
-(function() {
-
-Ember.Yannotate.PlayerContainer =  Ember.View.extend({
-  templateName: 'yannotate-player',
-  classNames: ['ember-yannotate-container']
+  data.buffer.push("<div class=\"analysis-general-comment\">\n  ");
+  data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "analysis.content.general", options) : helperMissing.call(depth0, "capitalize", "analysis.content.general", options))));
+  data.buffer.push("\n</div>\n");
+  return buffer;
+  
 });
 
-Ember.Yannotate.AnnotationsContainer =  Ember.View.extend({
-  classNames: ['ember-yannotate-container']
+Ember.TEMPLATES["analysis/timeline-entry"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', helper, options;
+  data.buffer.push("\n    ");
+  data.buffer.push(escapeExpression((helper = helpers['edit-entry'] || (depth0 && depth0['edit-entry']),options={hash:{
+    'class': ("edit-entry"),
+    'value': ("entry.comment")
+  },hashTypes:{'class': "STRING",'value': "ID"},hashContexts:{'class': depth0,'value': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "edit-entry", options))));
+  data.buffer.push("\n  ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push("\n    <span class=\"comment\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "editEntry", {hash:{
+    'on': ("doubleClick"),
+    'target': ("view")
+  },hashTypes:{'on': "STRING",'target': "STRING"},hashContexts:{'on': depth0,'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">");
+  stack1 = helpers._triageMustache.call(depth0, "entry.comment", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</span>\n  ");
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push("\n    ");
+  stack1 = helpers['if'].call(depth0, "view.isEditingEntry", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(8, program8, data),fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n  ");
+  return buffer;
+  }
+function program6(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("\n      <button ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "saveEntry", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Save</button>\n    ");
+  return buffer;
+  }
+
+function program8(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("\n      <button ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "editEntry", {hash:{
+    'target': ("view")
+  },hashTypes:{'target': "STRING"},hashContexts:{'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Edit</button>\n    ");
+  return buffer;
+  }
+
+  data.buffer.push("<strong>");
+  stack1 = helpers._triageMustache.call(depth0, "entry.time", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</strong>\n<div class=\"timeline-entry-block\">\n  ");
+  stack1 = helpers['if'].call(depth0, "view.isEditingEntry", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n  ");
+  stack1 = helpers['if'].call(depth0, "isCurrentAnalyst", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n</div>\n");
+  return buffer;
+  
 });
 
+Ember.TEMPLATES["analysis/timeline"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var stack1, escapeExpression=this.escapeExpression, self=this;
 
-})();
-(function() {
+function program1(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("\n  ");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.TimelineEntry", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, "entry", "in", "analysis.content.timeline", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  else { data.buffer.push(''); }
+  
+});
 
 Ember.TEMPLATES["components/yannotate"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
@@ -234,7 +442,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.PlayerContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
   data.buffer.push("\n");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.AnnotationsContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.AnalysesContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
   return buffer;
   
 });
@@ -261,6 +469,15 @@ function program3(depth0,data) {
   data.buffer.push("\n      <button ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "startAnalysis", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(">Analyse !</button>\n    ");
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("\n        <li><a ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Edit</a></li>\n      ");
   return buffer;
   }
 
@@ -294,12 +511,14 @@ function program3(depth0,data) {
   stack1 = helpers._triageMustache.call(depth0, "replay.patch", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</li>\n    </ul>\n  </div>\n\n  <div class=\"replay-toolbar\">\n    ");
-  stack1 = helpers._triageMustache.call(depth0, "poney", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n    ");
   stack1 = helpers['if'].call(depth0, "isAnalysing", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n  </div>\n</div> <!-- replay-information -->\n");
+  data.buffer.push("\n\n    <ul>\n      <li><a href=\"#\">Download LPR</a></li>\n      <li><a ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Report</a></li>\n      ");
+  stack1 = helpers['if'].call(depth0, "isCurrentAnalyst", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </ul>\n  </div>\n</div> <!-- replay-information -->\n");
   return buffer;
   
 });

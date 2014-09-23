@@ -8,10 +8,18 @@ if (Ember.libraries) {
 }
 
 
+// Lib dependencies
 require('build/src/lib/jquery-yannotate');
 require('build/src/lib/youtube');
 
-require('build/src/helpers/format-helpers')
+// Components
+require('build/src/components/yannotate-component');
 
-require('build/src/component');
-require('build/src/views');
+// Views
+require('build/src/views/views');
+
+// View specific helpers
+require('build/src/views/analysis/edit-entry-helper');
+
+// Format Helpers
+require('build/src/helpers/format-helpers')

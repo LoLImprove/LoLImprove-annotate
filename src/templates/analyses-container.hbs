@@ -1,0 +1,12 @@
+{{#each analysis in replay.analyses}}
+  <div class="analysis">
+    <div class="analyst-information">
+      {{capitalize analysis.user.name}}
+      <strong>{{capitalize analysis.user.league}}</strong>
+    </div>
+
+
+    {{view "Ember.Yannotate.GeneralComment"}}
+    {{view "Ember.Yannotate.Timeline"}}
+  </div>
+{{/each}}

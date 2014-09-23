@@ -1,0 +1,16 @@
+<strong>{{entry.time}}</strong>
+<div class="timeline-entry-block">
+  {{#if view.isEditingEntry}}
+    {{edit-entry class="edit-entry" value=entry.comment}}
+  {{else}}
+    <span class="comment" {{action "editEntry" on="doubleClick" target="view"}}>{{entry.comment}}</span>
+  {{/if}}
+  {{#if isCurrentAnalyst}}
+    {{#if view.isEditingEntry}}
+      <button {{action "saveEntry" target="view"}}>Save</button>
+    {{else}}
+      <button {{action "editEntry" target="view"}}>Edit</button>
+    {{/if}}
+  {{/if}}
+
+</div>

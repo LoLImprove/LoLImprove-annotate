@@ -1,10 +1,12 @@
 Ember.Fixtures = {
   user: {
+    id: 1,
     name: "Diacred",
     league: "Gold V"
   },
   replay: {
     user: {
+      id: 1,
       name: "Diacred",
       league: "Gold V"
     },
@@ -27,9 +29,9 @@ Ember.Fixtures = {
           general: "Hello, this is a general comment",
           timeline: [
             { time: "1:55", comment: "Shoulda backed away" },
-            { time: "5:55", comment: "Shoulda backed away" },
-            { time: "8:55", comment: "Shoulda backed away" },
-            { time: "9:55", comment: "Shoulda backed away" }
+            { time: "5:55", comment: "Shoulda backed away2" },
+            { time: "8:55", comment: "Shoulda backed away3" },
+            { time: "9:55", comment: "Shoulda backed away4" }
           ]
         }
       }

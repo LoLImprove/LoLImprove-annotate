@@ -27,12 +27,19 @@
   </div>
 
   <div class="replay-toolbar">
-    {{poney}}
     {{#if isAnalysing}}
       <button {{action "addGeneralComment"}}>Add a general comment</button>
       <button {{action "addTimeLineEntry"}}>Add an entry to timeline</button>
     {{else}}
       <button {{action "startAnalysis"}}>Analyse !</button>
     {{/if}}
+
+    <ul>
+      <li><a href="#">Download LPR</a></li>
+      <li><a {{action ""}}>Report</a></li>
+      {{#if isCurrentAnalyst}}
+        <li><a {{action ""}}>Edit</a></li>
+      {{/if}}
+    </ul>
   </div>
 </div> <!-- replay-information -->
