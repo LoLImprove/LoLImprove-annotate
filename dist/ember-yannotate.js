@@ -167,6 +167,7 @@ window.YoutubeAPI = new window._YoutubeIframeAPI();
 
 Ember.Yannotate.YannotateComponent = Ember.Component.extend({
   layoutName: 'components/yannotate',
+
   init: function() {
     this._super();
 
@@ -192,6 +193,7 @@ Ember.Yannotate.YannotateComponent = Ember.Component.extend({
     }
 
   },
+
   actions: {
     startAnalysis: function() {
       this.set('isAnalysing', true);
@@ -246,8 +248,8 @@ Ember.Yannotate.TimelineEntry =  Ember.View.extend({
       this.set('isEditingEntry', true);
     },
     saveEntry: function() {
-      console.log('saving the world');
       this.set('isEditingEntry', false);
+      // TODO: Do ajax stuff or ember-model stuff
     }
   }
 });
@@ -278,12 +280,19 @@ Ember.Handlebars.helper('edit-entry', Ember.Yannotate.EditEntryHelper);
 })();
 (function() {
 
+// Format Helpers
+
+
+})();
+(function() {
+
 Ember.Handlebars.registerBoundHelper('capitalize', function(string) {
-  return string.capitalize();
+  return string;
+    //.capitalize();
 });
 
 Ember.Handlebars.registerBoundHelper('upcase', function(string) {
-  return string.toUpperCase();
+  return string;//.toUpperCase();
 });
 
 Ember.Handlebars.registerBoundHelper('excerpt', function(string, length) {
@@ -348,7 +357,7 @@ function program1(depth0,data) {
   data.buffer.push("\n    ");
   data.buffer.push(escapeExpression((helper = helpers['edit-entry'] || (depth0 && depth0['edit-entry']),options={hash:{
     'class': ("edit-entry"),
-    'value': ("entry.comment")
+    'value': ("entry.content")
   },hashTypes:{'class': "STRING",'value': "ID"},hashContexts:{'class': depth0,'value': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "edit-entry", options))));
   data.buffer.push("\n  ");
   return buffer;
@@ -363,7 +372,7 @@ function program3(depth0,data) {
     'target': ("view")
   },hashTypes:{'on': "STRING",'target': "STRING"},hashContexts:{'on': depth0,'target': depth0},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(">");
-  stack1 = helpers._triageMustache.call(depth0, "entry.comment", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers._triageMustache.call(depth0, "entry.content", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</span>\n  ");
   return buffer;

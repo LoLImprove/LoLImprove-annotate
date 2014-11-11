@@ -22,4 +22,4 @@ require('build/src/views/views');
 require('build/src/views/analysis/edit-entry-helper');
 
 // Format Helpers
-require('build/src/helpers/format-helpers')
+require('build/src/helpers/format-helpers');

@@ -26,13 +26,82 @@ Ember.Fixtures = {
           league: "Challenger"
         },
         content: {
-          general: "Hello, this is a general comment",
+          general: {
+            content: "Hello, this is a general comment",
+            comments: [
+              {
+                user: {
+                  id: 3,
+                  name: "xPeke",
+                  league: "Diamond I"
+                },
+                content: "I don't really agree with that general comment, Sir.",
+                created_at: "2014-12-04"
+              },
+              {
+                user: {
+                  id: 3,
+                  name: "Tabzzz",
+                  league: "Diamond I"
+                },
+                content: "He is right, though, xPuke.",
+                created_at: "2014-12-04"
+              }
+            ]
+          },
           timeline: [
-            { time: "1:55", comment: "Shoulda backed away" },
-            { time: "5:55", comment: "Shoulda backed away2" },
-            { time: "8:55", comment: "Shoulda backed away3" },
-            { time: "9:55", comment: "Shoulda backed away4" }
-          ]
+            { time: "1:55", content: "Shoulda backed away" },
+            {
+              time: "5:55",
+              content: "Shoulda backed away2",
+              comments: [
+                {
+                  user: {
+                    id: 3,
+                    name: "xPeke",
+                    league: "Diamond I"
+                  },
+                  content: "I don't really agree with that general comment, Sir.",
+                  created_at: "2014-12-04"
+                },
+                {
+                  user: {
+                    id: 3,
+                    name: "Tabzzz",
+                    league: "Diamond I"
+                  },
+                  content: "He is right, though, xPuke.",
+                  created_at: "2014-12-04"
+                }
+              ]
+            },
+            { time: "8:55", content: "Shoulda backed away3" },
+            {
+              time: "9:55",
+              content: "Shoulda backed away4",
+              comments: [
+                {
+                  user: {
+                    id: 3,
+                    name: "xPeke",
+                    league: "Diamond I"
+                  },
+                  content: "I don't really agree with that general comment, Sir.",
+                  created_at: "2014-12-04"
+                },
+                {
+                  user: {
+                    id: 3,
+                    name: "Tabzzz",
+                    league: "Diamond I"
+                  },
+                  content: "He is right, though, xPuke.",
+                  created_at: "2014-12-04"
+                }
+              ] // Timeline entry comments
+
+            } // Last time line entry
+          ] // Timeline
         }
       }
 

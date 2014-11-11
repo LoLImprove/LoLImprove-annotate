@@ -29,8 +29,8 @@ Ember.Yannotate.TimelineEntry =  Ember.View.extend({
       this.set('isEditingEntry', true);
     },
     saveEntry: function() {
-      console.log('saving the world');
       this.set('isEditingEntry', false);
+      // TODO: Do ajax stuff or ember-model stuff
     }
   }
 });

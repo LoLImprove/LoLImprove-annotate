@@ -1,5 +1,6 @@
 Ember.Yannotate.YannotateComponent = Ember.Component.extend({
   layoutName: 'components/yannotate',
+
   init: function() {
     this._super();
 
@@ -25,6 +26,7 @@ Ember.Yannotate.YannotateComponent = Ember.Component.extend({
     }
 
   },
+
   actions: {
     startAnalysis: function() {
       this.set('isAnalysing', true);

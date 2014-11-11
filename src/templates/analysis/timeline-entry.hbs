@@ -1,9 +1,9 @@
 <strong>{{entry.time}}</strong>
 <div class="timeline-entry-block">
   {{#if view.isEditingEntry}}
-    {{edit-entry class="edit-entry" value=entry.comment}}
+    {{edit-entry class="edit-entry" value=entry.content}}
   {{else}}
-    <span class="comment" {{action "editEntry" on="doubleClick" target="view"}}>{{entry.comment}}</span>
+    <span class="comment" {{action "editEntry" on="doubleClick" target="view"}}>{{entry.content}}</span>
   {{/if}}
   {{#if isCurrentAnalyst}}
     {{#if view.isEditingEntry}}
