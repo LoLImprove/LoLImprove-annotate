@@ -1,0 +1,3 @@
+[submodule "li-sweetjs"]
+	path = li-sweetjs
+	url = git@github.com:LoLImprove/li-sweetjs.git

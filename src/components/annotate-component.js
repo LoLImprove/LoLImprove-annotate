@@ -1,5 +1,5 @@
-Ember.Yannotate.YannotateComponent = Ember.Component.extend({
-  layoutName: 'components/yannotate',
+LoLImprove.Annotate.AnnotateComponent = Ember.Component.extend({
+  layoutName: 'components/analyse',
 
   init: function() {
     this._super();
@@ -13,7 +13,8 @@ Ember.Yannotate.YannotateComponent = Ember.Component.extend({
     var self = this,
         replayId = self.get("replay").video_id;
 
-    $('#yannotate-player').yannotate({
+    /* Youtube Annotation system (Y-Annotate) */
+    $('#li-player').yannotate({
       videoId: replayId,
       dimensions: 'relative',
       onPlayerStarted: function() {
@@ -38,4 +39,4 @@ Ember.Yannotate.YannotateComponent = Ember.Component.extend({
   }
 });
 
-Ember.Handlebars.helper('yannotate-ui', Ember.Yannotate.YannotateComponent);
+Ember.Handlebars.helper('annotate-ui', LoLImprove.Annotate.AnnotateComponent);

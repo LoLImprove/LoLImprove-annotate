@@ -6,6 +6,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-sweet.js');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -36,18 +37,30 @@ module.exports = function (grunt) {
       'build/src/templates.js': ["src/templates/**/*.hbs"]
     },
 
+    sweetjs: {
+      options: {
+        modules: ['./li-sweetjs/if', './li-sweetjs/unless', './li-sweetjs/or-assign', './li-sweetjs/push', './li-sweetjs/in', './li-sweetjs/call-on-all', './li-sweetjs/or-assign'],
+        readableNames: true
+      },
+      // Compiles to .js or .built.js files
+      source: {
+        src: [ 'build/src/*.sjs', 'build/src/**/*.sjs' ],
+      }
+    },
+
     neuter: {
       options: {
         includeSourceURL: false,
         separator: "\n"
       },
-      "dist/ember-yannotate.js":  ["build/src/main.js", "build/src/templates.js"]
+      "dist/lolimprove-annotate.js":  ["build/src/main.js", "build/src/templates.js"]
     },
 
     clean: {
       build: ["./build"],
+      sweetjs: ["./build/src/**/*.sjs", "./build/src/*.sjs"],
       dist: ["./dist"],
-      app: ["./yannotate-app/tmp/dist"]
+      app: ["./app/tmp/dist"]
     },
 
     jsdoc: {
@@ -89,9 +102,9 @@ module.exports = function (grunt) {
         },
 
         files: {
-          './dist/ember-yannotate.min.js': [
+          './dist/lolimprove-annotate.min.js': [
             // Include dist in bundle
-            './dist/ember-yannotate.js'
+            './dist/lolimprove-annotate.js'
           ]
         }
       }
@@ -120,8 +133,8 @@ module.exports = function (grunt) {
       all: {
         files: [
                 "src/**/*.js", "src/**/*.hbs",
-                "yannotate-app/app/**/*.js", "yannotate-app/app/**/*.hbs",
-                "yannotate-app/app/**/*.css", "yannotate-app/app/**/*.scss"
+                "sample-app/app/**/*.js", "sample-app/app/**/*.hbs",
+                "sample-app/app/**/*.css", "sample-app/app/**/*.scss"
                ],
         tasks: ["build"],
         options: {
@@ -133,7 +146,7 @@ module.exports = function (grunt) {
 
   // Build tasks
   //grunt.registerTask("build", ["clean:app", "clean:build", "copy", "emberTemplates", "neuter"]);
-  grunt.registerTask("build", ["clean:build", "copy", "emberTemplates", "neuter"]);
+  grunt.registerTask("build", ["clean:build", "copy", "sweetjs", "clean:sweetjs", "emberTemplates", "neuter"]);
 
   grunt.registerTask("build_watch", ["build", "watch:all"])
 

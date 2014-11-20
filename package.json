@@ -14,6 +14,7 @@
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
     "grunt-contrib-copy": "~0.4.1",
+    "grunt-sweet.js": "*",
     "grunt-neuter": "~0.4.0",
     "grunt-ember-templates": "~0.4.10",
     "grunt-jsdoc": "*",

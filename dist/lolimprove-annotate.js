@@ -1,15 +1,12 @@
 (function() {
 
 /* Require everything pls */
-
-Ember.Yannotate = Ember.Namespace.create()
-Ember.Yannotate.VERSION = '0.0.1'
-
+LoLImprove = LoLImprove || Ember.Namespace.create();
+LoLImprove.Annotate = Ember.Namespace.create();
+LoLImprove.Annotate.VERSION = '0.0.1';
 if (Ember.libraries) {
-  Ember.libraries.register('Ember Yannotate', Ember.Yannotate.VERSION)
+    Ember.libraries.register('LoLImprove Annotate', LoLImprove.Annotate.VERSION);
 }
-
-
 // Lib dependencies
 
 
@@ -165,8 +162,8 @@ window.YoutubeAPI = new window._YoutubeIframeAPI();
 })();
 (function() {
 
-Ember.Yannotate.YannotateComponent = Ember.Component.extend({
-  layoutName: 'components/yannotate',
+LoLImprove.Annotate.AnnotateComponent = Ember.Component.extend({
+  layoutName: 'components/analyse',
 
   init: function() {
     this._super();
@@ -180,7 +177,8 @@ Ember.Yannotate.YannotateComponent = Ember.Component.extend({
     var self = this,
         replayId = self.get("replay").video_id;
 
-    $('#yannotate-player').yannotate({
+    /* Youtube Annotation system (Y-Annotate) */
+    $('#li-player').yannotate({
       videoId: replayId,
       dimensions: 'relative',
       onPlayerStarted: function() {
@@ -205,7 +203,7 @@ Ember.Yannotate.YannotateComponent = Ember.Component.extend({
   }
 });
 
-Ember.Handlebars.helper('yannotate-ui', Ember.Yannotate.YannotateComponent);
+Ember.Handlebars.helper('annotate-ui', LoLImprove.Annotate.AnnotateComponent);
 
 
 })();
@@ -287,12 +285,11 @@ Ember.Handlebars.helper('edit-entry', Ember.Yannotate.EditEntryHelper);
 (function() {
 
 Ember.Handlebars.registerBoundHelper('capitalize', function(string) {
-  return string;
-    //.capitalize();
+  return string.capitalize();
 });
 
 Ember.Handlebars.registerBoundHelper('upcase', function(string) {
-  return string;//.toUpperCase();
+  return string.toUpperCase();
 });
 
 Ember.Handlebars.registerBoundHelper('excerpt', function(string, length) {

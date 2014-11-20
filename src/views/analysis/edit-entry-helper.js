@@ -1,4 +1,4 @@
-Ember.Yannotate.EditEntryHelper = Ember.TextField.extend({
+LoLImprove.Annotate.EditEntryHelper = Ember.TextField.extend({
   didInsertElement: function() {
     this.$().focus();
   },
@@ -8,4 +8,4 @@ Ember.Yannotate.EditEntryHelper = Ember.TextField.extend({
   }
 });
 
-Ember.Handlebars.helper('edit-entry', Ember.Yannotate.EditEntryHelper);
+Ember.Handlebars.helper('edit-entry', LoLImprove.Annotate.EditEntryHelper);

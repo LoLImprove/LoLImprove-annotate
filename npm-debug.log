@@ -1,300 +1,126 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-g', 'ember-cli' ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.32
 4 verbose node symlink /usr/bin/node
-5 verbose cache add [ 'ember-cli', null ]
-6 verbose cache add name=undefined spec="ember-cli" args=["ember-cli",null]
-7 verbose parsed url { protocol: null,
-7 verbose parsed url   slashes: null,
-7 verbose parsed url   auth: null,
-7 verbose parsed url   host: null,
-7 verbose parsed url   port: null,
-7 verbose parsed url   hostname: null,
-7 verbose parsed url   hash: null,
-7 verbose parsed url   search: null,
-7 verbose parsed url   query: null,
-7 verbose parsed url   pathname: 'ember-cli',
-7 verbose parsed url   path: 'ember-cli',
-7 verbose parsed url   href: 'ember-cli' }
-8 silly lockFile 63e15bd3-ember-cli ember-cli
-9 verbose lock ember-cli /home/gaby/.npm/63e15bd3-ember-cli.lock
-10 silly lockFile 63e15bd3-ember-cli ember-cli
-11 silly lockFile 63e15bd3-ember-cli ember-cli
-12 verbose addNamed [ 'ember-cli', '' ]
-13 verbose addNamed [ null, '*' ]
-14 silly lockFile 1645c26a-ember-cli ember-cli@
-15 verbose lock ember-cli@ /home/gaby/.npm/1645c26a-ember-cli.lock
-16 silly addNameRange { name: 'ember-cli', range: '*', hasData: false }
-17 verbose request where is /ember-cli
-18 verbose request registry https://registry.npmjs.org/
-19 verbose request id 93d0ca8aa80cfe7d
-20 verbose url raw /ember-cli
-21 verbose url resolving [ 'https://registry.npmjs.org/', './ember-cli' ]
-22 verbose url resolved https://registry.npmjs.org/ember-cli
-23 verbose request where is https://registry.npmjs.org/ember-cli
-24 info trying registry request attempt 1 at 18:18:17
-25 verbose etag "5B65HHD3M8TURABCSIESP7JDZ"
-26 http GET https://registry.npmjs.org/ember-cli
-27 http 304 https://registry.npmjs.org/ember-cli
-28 silly registry.get cb [ 304,
-28 silly registry.get   { date: 'Thu, 18 Sep 2014 16:18:17 GMT',
-28 silly registry.get     server: 'Apache',
-28 silly registry.get     via: '1.1 varnish',
-28 silly registry.get     'last-modified': 'Thu, 18 Sep 2014 16:18:17 GMT',
-28 silly registry.get     'cache-control': 'max-age=60',
-28 silly registry.get     etag: '"5B65HHD3M8TURABCSIESP7JDZ"',
-28 silly registry.get     'x-served-by': 'cache-ams4135-AMS',
-28 silly registry.get     'x-cache': 'HIT',
-28 silly registry.get     'x-cache-hits': '1',
-28 silly registry.get     'x-timer': 'S1411057097.222990,VS0,VE0',
-28 silly registry.get     vary: 'Accept',
-28 silly registry.get     'content-length': '0',
-28 silly registry.get     'keep-alive': 'timeout=10, max=50',
-28 silly registry.get     connection: 'Keep-Alive' } ]
-29 verbose etag https://registry.npmjs.org/ember-cli from cache
-30 silly addNameRange number 2 { name: 'ember-cli', range: '*', hasData: true }
-31 silly addNameRange versions [ 'ember-cli',
-31 silly addNameRange   [ '0.0.0',
-31 silly addNameRange     '0.0.1',
-31 silly addNameRange     '0.0.2',
-31 silly addNameRange     '0.0.3',
-31 silly addNameRange     '0.0.4',
-31 silly addNameRange     '0.0.5',
-31 silly addNameRange     '0.0.6',
-31 silly addNameRange     '0.0.7',
-31 silly addNameRange     '0.0.8',
-31 silly addNameRange     '0.0.9',
-31 silly addNameRange     '0.0.10',
-31 silly addNameRange     '0.0.11',
-31 silly addNameRange     '0.0.12',
-31 silly addNameRange     '0.0.13',
-31 silly addNameRange     '0.0.14',
-31 silly addNameRange     '0.0.15',
-31 silly addNameRange     '0.0.16',
-31 silly addNameRange     '0.0.18',
-31 silly addNameRange     '0.0.19',
-31 silly addNameRange     '0.0.20',
-31 silly addNameRange     '0.0.21',
-31 silly addNameRange     '0.0.22',
-31 silly addNameRange     '0.0.23',
-31 silly addNameRange     '0.0.24',
-31 silly addNameRange     '0.0.25',
-31 silly addNameRange     '0.0.27',
-31 silly addNameRange     '0.0.28',
-31 silly addNameRange     '0.0.29',
-31 silly addNameRange     '0.0.32',
-31 silly addNameRange     '0.0.33',
-31 silly addNameRange     '0.0.34',
-31 silly addNameRange     '0.0.35',
-31 silly addNameRange     '0.0.36',
-31 silly addNameRange     '0.0.37',
-31 silly addNameRange     '0.0.38',
-31 silly addNameRange     '0.0.39',
-31 silly addNameRange     '0.0.40',
-31 silly addNameRange     '0.0.41',
-31 silly addNameRange     '0.0.42',
-31 silly addNameRange     '0.0.43',
-31 silly addNameRange     '0.0.44',
-31 silly addNameRange     '0.0.45',
-31 silly addNameRange     '0.0.46' ] ]
-32 verbose addNamed [ 'ember-cli', '0.0.46' ]
-33 verbose addNamed [ '0.0.46', '0.0.46' ]
-34 silly lockFile b20a62fc-ember-cli-0-0-46 ember-cli@0.0.46
-35 verbose lock ember-cli@0.0.46 /home/gaby/.npm/b20a62fc-ember-cli-0-0-46.lock
-36 silly lockFile b20a62fc-ember-cli-0-0-46 ember-cli@0.0.46
-37 silly lockFile b20a62fc-ember-cli-0-0-46 ember-cli@0.0.46
-38 silly lockFile 1645c26a-ember-cli ember-cli@
-39 silly lockFile 1645c26a-ember-cli ember-cli@
-40 silly resolved [ { name: 'ember-cli',
-40 silly resolved     version: '0.0.46',
-40 silly resolved     main: 'lib/cli/index.js',
-40 silly resolved     description: 'Command line tool for developing ambitious ember.js apps',
-40 silly resolved     trackingCode: 'UA-49225444-1',
-40 silly resolved     bin: { ember: './bin/ember' },
-40 silly resolved     scripts:
-40 silly resolved      { test: 'node tests/runner',
-40 silly resolved        'test-all': 'node tests/runner all',
-40 silly resolved        autotest: 'mocha --watch --reporter spec tests/**/*-test.js' },
-40 silly resolved     repository:
-40 silly resolved      { type: 'git',
-40 silly resolved        url: 'https://github.com/stefanpenner/ember-cli.git' },
-40 silly resolved     engines: { node: '>= 0.10.0' },
-40 silly resolved     keywords:
-40 silly resolved      [ 'ember.js',
-40 silly resolved        'ember',
-40 silly resolved        'cli',
-40 silly resolved        'app',
-40 silly resolved        'kit',
-40 silly resolved        'app-kit',
-40 silly resolved        'ember-app-kit' ],
-40 silly resolved     author: { name: 'Ember core team and ember cli contributors' },
-40 silly resolved     license: 'MIT',
-40 silly resolved     bugs: { url: 'https://github.com/stefanpenner/ember-cli/issues' },
-40 silly resolved     dependencies:
-40 silly resolved      { abbrev: '^1.0.5',
-40 silly resolved        bower: '^1.3.5',
-40 silly resolved        'bower-config': '0.5.2',
-40 silly resolved        broccoli: '0.12.3',
-40 silly resolved        'broccoli-caching-writer': '0.4.2',
-40 silly resolved        'broccoli-clean-css': '0.2.0',
-40 silly resolved        'broccoli-concat': '0.0.11',
-40 silly resolved        'broccoli-es3-safe-recast': '1.0.0',
-40 silly resolved        'broccoli-es6-concatenator': '0.1.7',
-40 silly resolved        'broccoli-file-mover': '0.3.6',
-40 silly resolved        'broccoli-file-remover': '0.2.3',
-40 silly resolved        'broccoli-filter': '0.1.6',
-40 silly resolved        'broccoli-jshint': '0.5.1',
-40 silly resolved        'broccoli-kitchen-sink-helpers': '0.2.4',
-40 silly resolved        'broccoli-merge-trees': '0.1.4',
-40 silly resolved        'broccoli-sane-watcher': '0.0.6',
-40 silly resolved        'broccoli-static-compiler': '0.1.4',
-40 silly resolved        'broccoli-uglify-js': '0.1.3',
-40 silly resolved        'broccoli-unwatched-tree': '0.1.1',
-40 silly resolved        'broccoli-writer': '0.1.1',
-40 silly resolved        chalk: '0.5.1',
-40 silly resolved        'concat-stream': '^1.4.6',
-40 silly resolved        configstore: '0.3.1',
-40 silly resolved        'connect-livereload': '0.4.0',
-40 silly resolved        'core-object': '0.0.2',
-40 silly resolved        diff: '^1.0.8',
-40 silly resolved        express: '^4.8.5',
-40 silly resolved        findup: '0.1.5',
-40 silly resolved        'fs-extra': '0.11.1',
-40 silly resolved        'git-repo-info': '^1.0.2',
-40 silly resolved        glob: '^4.0.5',
-40 silly resolved        inflection: '^1.4.0',
-40 silly resolved        inquirer: '0.5.1',
-40 silly resolved        'js-string-escape': '^1.0.0',
-40 silly resolved        leek: '0.0.12',
-40 silly resolved        'lodash-node': '^2.4.1',
-40 silly resolved        minimatch: '^1.0.0',
-40 silly resolved        mkdirp: '0.5.0',
-40 silly resolved        morgan: '^1.2.2',
-40 silly resolved        ncp: '0.6.0',
-40 silly resolved        nopt: '^3.0.1',
-40 silly resolved        npm: '^1.4.6',
-40 silly resolved        'pleasant-progress': '^1.0.1',
-40 silly resolved        'proxy-middleware': '0.5.1',
-40 silly resolved        'quick-temp': '0.1.2',
-40 silly resolved        readline2: '0.1.0',
-40 silly resolved        resolve: '^1.0.0',
-40 silly resolved        rimraf: '^2.2.8',
-40 silly resolved        rsvp: '^3.0.13',
-40 silly resolved        semver: '^3.0.1',
-40 silly resolved        testem: '0.6.19',
-40 silly resolved        through: '^2.3.4',
-40 silly resolved        'tiny-lr': '0.1.4',
-40 silly resolved        'walk-sync': '0.1.2',
-40 silly resolved        yam: '0.0.16' },
-40 silly resolved     devDependencies:
-40 silly resolved      { chai: '^1.9.1',
-40 silly resolved        'chai-as-promised': '^4.1.1',
-40 silly resolved        mocha: '^1.18.0',
-40 silly resolved        'mocha-jshint': '0.0.7',
-40 silly resolved        'node-require-timings': '0.0.2',
-40 silly resolved        supertest: '0.13.0',
-40 silly resolved        'tmp-sync': '^1.0.1' },
-40 silly resolved     homepage: 'https://github.com/stefanpenner/ember-cli',
-40 silly resolved     bundleDependencies:
-40 silly resolved      [ 'bower',
-40 silly resolved        'bower-config',
-40 silly resolved        'broccoli',
-40 silly resolved        'broccoli-caching-writer',
-40 silly resolved        'broccoli-clean-css',
-40 silly resolved        'broccoli-concat',
-40 silly resolved        'broccoli-es3-safe-recast',
-40 silly resolved        'broccoli-es6-concatenator',
-40 silly resolved        'broccoli-file-mover',
-40 silly resolved        'broccoli-file-remover',
-40 silly resolved        'broccoli-filter',
-40 silly resolved        'broccoli-jshint',
-40 silly resolved        'broccoli-kitchen-sink-helpers',
-40 silly resolved        'broccoli-merge-trees',
-40 silly resolved        'broccoli-sane-watcher',
-40 silly resolved        'broccoli-static-compiler',
-40 silly resolved        'broccoli-uglify-js',
-40 silly resolved        'broccoli-unwatched-tree',
-40 silly resolved        'chalk',
-40 silly resolved        'concat-stream',
-40 silly resolved        'configstore',
-40 silly resolved        'connect-livereload',
-40 silly resolved        'core-object',
-40 silly resolved        'diff',
-40 silly resolved        'express',
-40 silly resolved        'findup',
-40 silly resolved        'fs-extra',
-40 silly resolved        'git-repo-info',
-40 silly resolved        'glob',
-40 silly resolved        'inflection',
-40 silly resolved        'inquirer',
-40 silly resolved        'leek',
-40 silly resolved        'lodash-node',
-40 silly resolved        'minimatch',
-40 silly resolved        'mkdirp',
-40 silly resolved        'morgan',
-40 silly resolved        'ncp',
-40 silly resolved        'nopt',
-40 silly resolved        'npm',
-40 silly resolved        'pleasant-progress',
-40 silly resolved        'proxy-middleware',
-40 silly resolved        'quick-temp',
-40 silly resolved        'readline2',
-40 silly resolved        'resolve',
-40 silly resolved        'rimraf',
-40 silly resolved        'rsvp',
-40 silly resolved        'semver',
-40 silly resolved        'testem',
-40 silly resolved        'through',
-40 silly resolved        'tiny-lr',
-40 silly resolved        'walk-sync' ],
-40 silly resolved     _id: 'ember-cli@0.0.46',
-40 silly resolved     _shasum: '6d4223f81e90484a5b34d7fa2ca6c79740d97b06',
-40 silly resolved     _resolved: 'https://registry.npmjs.org/ember-cli/-/ember-cli-0.0.46.tgz',
-40 silly resolved     _from: 'ember-cli@',
-40 silly resolved     _npmVersion: '2.0.0-beta.0',
-40 silly resolved     _npmUser: { name: 'rwjblue', email: 'robert.w.jackson@me.com' },
-40 silly resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
-40 silly resolved     dist:
-40 silly resolved      { shasum: '6d4223f81e90484a5b34d7fa2ca6c79740d97b06',
-40 silly resolved        tarball: 'http://registry.npmjs.org/ember-cli/-/ember-cli-0.0.46.tgz' },
-40 silly resolved     directories: {},
-40 silly resolved     readme: 'ERROR: No README data found!' } ]
-41 info install ember-cli@0.0.46 into /usr/lib
-42 info installOne ember-cli@0.0.46
-43 verbose lib/node_modules/ember-cli unbuild
-44 verbose tar unpack /home/gaby/.npm/ember-cli/0.0.46/package.tgz
-45 silly lockFile 90b17a6b-r-usr-lib-node-modules-ember-cli tar:///usr/lib/node_modules/ember-cli
-46 verbose lock tar:///usr/lib/node_modules/ember-cli /home/gaby/.npm/90b17a6b-r-usr-lib-node-modules-ember-cli.lock
-47 silly lockFile 3b8b442c-npm-ember-cli-0-0-46-package-tgz tar:///home/gaby/.npm/ember-cli/0.0.46/package.tgz
-48 verbose lock tar:///home/gaby/.npm/ember-cli/0.0.46/package.tgz /home/gaby/.npm/3b8b442c-npm-ember-cli-0-0-46-package-tgz.lock
-49 silly gunzTarPerm modes [ '775', '664' ]
-50 error Error: EACCES, mkdir '/usr/lib/node_modules/ember-cli'
-50 error  { [Error: EACCES, mkdir '/usr/lib/node_modules/ember-cli']
-50 error   errno: 3,
-50 error   code: 'EACCES',
-50 error   path: '/usr/lib/node_modules/ember-cli',
-50 error   fstream_type: 'Directory',
-50 error   fstream_path: '/usr/lib/node_modules/ember-cli',
-50 error   fstream_class: 'DirWriter',
-50 error   fstream_stack:
-50 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
-50 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
-50 error      'Object.oncomplete (fs.js:107:15)' ] }
-51 error Please try running this command again as root/Administrator.
-52 error System Linux 3.13.0-35-generic
-53 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g" "ember-cli"
-54 error cwd /home/gaby/Work/LoLImprove/yannotate
-55 error node -v v0.10.32
-56 error npm -v 1.4.28
-57 error path /usr/lib/node_modules/ember-cli
-58 error fstream_path /usr/lib/node_modules/ember-cli
-59 error fstream_type Directory
-60 error fstream_class DirWriter
-61 error code EACCES
-62 error errno 3
-63 error stack Error: EACCES, mkdir '/usr/lib/node_modules/ember-cli'
-64 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
-64 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
-64 error fstream_stack Object.oncomplete (fs.js:107:15)
-65 verbose exit [ 3, true ]
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ '/home/gaby/Work/LoLImprove/LoLImprove-annotate',
+6 verbose install   [ 'grunt',
+6 verbose install     'grunt-contrib-clean',
+6 verbose install     'grunt-contrib-sass',
+6 verbose install     'grunt-contrib-jshint',
+6 verbose install     'grunt-contrib-qunit',
+6 verbose install     'grunt-contrib-sweet.js',
+6 verbose install     'grunt-contrib-uglify',
+6 verbose install     'grunt-contrib-watch',
+6 verbose install     'grunt-contrib-copy',
+6 verbose install     'grunt-neuter',
+6 verbose install     'grunt-ember-templates',
+6 verbose install     'grunt-jsdoc',
+6 verbose install     'grunt-bower-task',
+6 verbose install     'grunt-release-it' ] ]
+7 info preinstall ember-yannotate@0.0.0
+8 verbose readDependencies using package.json deps
+9 verbose already installed skipping grunt-contrib-sass@~0.8.1 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+10 verbose already installed skipping grunt-contrib-jshint@~0.6.3 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+11 verbose already installed skipping grunt-contrib-qunit@~0.2.2 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+12 verbose cache add [ 'grunt-contrib-sweet.js@*', null ]
+13 verbose cache add name=undefined spec="grunt-contrib-sweet.js@*" args=["grunt-contrib-sweet.js@*",null]
+14 verbose parsed url { protocol: null,
+14 verbose parsed url   slashes: null,
+14 verbose parsed url   auth: null,
+14 verbose parsed url   host: null,
+14 verbose parsed url   port: null,
+14 verbose parsed url   hostname: null,
+14 verbose parsed url   hash: null,
+14 verbose parsed url   search: null,
+14 verbose parsed url   query: null,
+14 verbose parsed url   pathname: 'grunt-contrib-sweet.js@*',
+14 verbose parsed url   path: 'grunt-contrib-sweet.js@*',
+14 verbose parsed url   href: 'grunt-contrib-sweet.js@*' }
+15 verbose already installed skipping grunt-contrib-uglify@* /home/gaby/Work/LoLImprove/LoLImprove-annotate
+16 verbose already installed skipping grunt-contrib-watch@* /home/gaby/Work/LoLImprove/LoLImprove-annotate
+17 verbose already installed skipping grunt-contrib-copy@~0.4.1 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+18 verbose cache add name="grunt-contrib-sweet.js" spec="*" args=["grunt-contrib-sweet.js","*"]
+19 verbose parsed url { protocol: null,
+19 verbose parsed url   slashes: null,
+19 verbose parsed url   auth: null,
+19 verbose parsed url   host: null,
+19 verbose parsed url   port: null,
+19 verbose parsed url   hostname: null,
+19 verbose parsed url   hash: null,
+19 verbose parsed url   search: null,
+19 verbose parsed url   query: null,
+19 verbose parsed url   pathname: '*',
+19 verbose parsed url   path: '*',
+19 verbose parsed url   href: '*' }
+20 verbose addNamed [ 'grunt-contrib-sweet.js', '*' ]
+21 verbose addNamed [ null, '*' ]
+22 verbose already installed skipping grunt-neuter@~0.4.0 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+23 silly lockFile bb7a4531-grunt-contrib-sweet-js grunt-contrib-sweet.js@*
+24 verbose lock grunt-contrib-sweet.js@* /home/gaby/.npm/bb7a4531-grunt-contrib-sweet-js.lock
+25 silly addNameRange { name: 'grunt-contrib-sweet.js', range: '*', hasData: false }
+26 verbose already installed skipping grunt-ember-templates@~0.4.10 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+27 verbose request where is /grunt-contrib-sweet.js
+28 verbose request registry https://registry.npmjs.org/
+29 verbose request id fb622019a7d71c64
+30 verbose url raw /grunt-contrib-sweet.js
+31 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-contrib-sweet.js' ]
+32 verbose url resolved https://registry.npmjs.org/grunt-contrib-sweet.js
+33 verbose request where is https://registry.npmjs.org/grunt-contrib-sweet.js
+34 info trying registry request attempt 1 at 15:06:19
+35 http GET https://registry.npmjs.org/grunt-contrib-sweet.js
+36 verbose already installed skipping grunt-jsdoc@* /home/gaby/Work/LoLImprove/LoLImprove-annotate
+37 verbose already installed skipping grunt-bower-task@~0.4.0 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+38 verbose already installed skipping grunt-release-it@~0.2.0 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+39 verbose already installed skipping grunt@~0.4.5 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+40 verbose already installed skipping grunt-contrib-clean@~0.4.1 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+41 http 404 https://registry.npmjs.org/grunt-contrib-sweet.js
+42 verbose headers { date: 'Thu, 20 Nov 2014 14:06:20 GMT',
+42 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+42 verbose headers   'content-type': 'application/json',
+42 verbose headers   'cache-control': 'max-age=0',
+42 verbose headers   'content-length': '52',
+42 verbose headers   'accept-ranges': 'bytes',
+42 verbose headers   via: '1.1 varnish',
+42 verbose headers   age: '0',
+42 verbose headers   'x-served-by': 'cache-ams4136-AMS',
+42 verbose headers   'x-cache': 'MISS',
+42 verbose headers   'x-cache-hits': '0',
+42 verbose headers   'x-timer': 'S1416492379.888175,VS0,VE651',
+42 verbose headers   'keep-alive': 'timeout=10, max=50',
+42 verbose headers   connection: 'Keep-Alive' }
+43 silly registry.get cb [ 404,
+43 silly registry.get   { date: 'Thu, 20 Nov 2014 14:06:20 GMT',
+43 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+43 silly registry.get     'content-type': 'application/json',
+43 silly registry.get     'cache-control': 'max-age=0',
+43 silly registry.get     'content-length': '52',
+43 silly registry.get     'accept-ranges': 'bytes',
+43 silly registry.get     via: '1.1 varnish',
+43 silly registry.get     age: '0',
+43 silly registry.get     'x-served-by': 'cache-ams4136-AMS',
+43 silly registry.get     'x-cache': 'MISS',
+43 silly registry.get     'x-cache-hits': '0',
+43 silly registry.get     'x-timer': 'S1416492379.888175,VS0,VE651',
+43 silly registry.get     'keep-alive': 'timeout=10, max=50',
+43 silly registry.get     connection: 'Keep-Alive' } ]
+44 silly lockFile bb7a4531-grunt-contrib-sweet-js grunt-contrib-sweet.js@*
+45 silly lockFile bb7a4531-grunt-contrib-sweet-js grunt-contrib-sweet.js@*
+46 error 404 404 Not Found: grunt-contrib-sweet.js
+46 error 404
+46 error 404 'grunt-contrib-sweet.js' is not in the npm registry.
+46 error 404 You should bug the author to publish it
+46 error 404 It was specified as a dependency of 'ember-yannotate'
+46 error 404
+46 error 404 Maybe try 'npm search grunt contrib sweet'
+46 error 404
+46 error 404 Note that you can also install from a
+46 error 404 tarball, folder, or http url, or git url.
+47 error System Linux 3.13.0-37-generic
+48 error command "/usr/bin/node" "/usr/bin/npm" "install"
+49 error cwd /home/gaby/Work/LoLImprove/LoLImprove-annotate
+50 error node -v v0.10.32
+51 error npm -v 1.4.28
+52 error code E404
+53 verbose exit [ 1, true ]

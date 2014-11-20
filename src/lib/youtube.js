@@ -1,6 +1,7 @@
 /*
  * Public: Youtube Iframe API Object
  */
+
 var YoutubeIframeAPI = window._YoutubeIframeAPI = (function() {
   // Loads Youtube IFrame Player API asynchronously.
   var  firstScriptTag = document.getElementsByTagName('script')[0],
