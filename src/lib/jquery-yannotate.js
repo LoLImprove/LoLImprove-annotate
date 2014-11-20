@@ -19,6 +19,7 @@ Yannotate = window._Yannotate = (function(playerElement, opts) {
   this.opts = opts;
 
   YoutubeAPI.loadVideoById(this.opts.videoId);
+  YoutubeAPI.setPlayerElement(playerElement[0]);
 
   // Callback
   YoutubeAPI.onPlayerStarted = this.opts.onPlayerStarted;

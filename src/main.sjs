@@ -1,4 +1,5 @@
-LoLImprove ||= Ember.Namespace.create();
+LoLImprove = window.LoLImprove || Ember.Namespace.create();
+
 LoLImprove.Annotate = Ember.Namespace.create();
 LoLImprove.Annotate.VERSION = '0.0.1';
 

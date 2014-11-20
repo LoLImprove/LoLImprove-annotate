@@ -1,5 +1,5 @@
 LoLImprove.Annotate.PlayerContainer =  Ember.View.extend({
-  templateName: 'yannotate-player',
+  templateName: 'annotate-player',
   classNames: ['ember-yannotate-container']
 });
 

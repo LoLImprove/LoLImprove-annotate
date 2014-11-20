@@ -1,5 +1,5 @@
 LoLImprove.Annotate.AnnotateComponent = Ember.Component.extend({
-  layoutName: 'components/analyse',
+  layoutName: 'components/annotate',
 
   init: function() {
     this._super();
@@ -13,8 +13,8 @@ LoLImprove.Annotate.AnnotateComponent = Ember.Component.extend({
     var self = this,
         replayId = self.get("replay").video_id;
 
-    /* Youtube Annotation system (Y-Annotate) */
-    $('#li-player').yannotate({
+    /* Youtube Annotation system (annotate) */
+    $('#annotate-player').yannotate({
       videoId: replayId,
       dimensions: 'relative',
       onPlayerStarted: function() {
@@ -32,6 +32,9 @@ LoLImprove.Annotate.AnnotateComponent = Ember.Component.extend({
     startAnalysis: function() {
       this.set('isAnalysing', true);
       YoutubeAPI.player.playVideo();
+    },
+    addGeneralComment: function() {
+      console.log('Adding general comment');
     },
     addTimeLineEntry: function() {
       console.log(YoutubeAPI.player.getCurrentTime());

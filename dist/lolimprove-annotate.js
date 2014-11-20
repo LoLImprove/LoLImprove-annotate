@@ -1,12 +1,12 @@
 (function() {
 
-/* Require everything pls */
-LoLImprove = LoLImprove || Ember.Namespace.create();
+LoLImprove = window.LoLImprove || Ember.Namespace.create();
 LoLImprove.Annotate = Ember.Namespace.create();
 LoLImprove.Annotate.VERSION = '0.0.1';
 if (Ember.libraries) {
     Ember.libraries.register('LoLImprove Annotate', LoLImprove.Annotate.VERSION);
 }
+/* All of this LoLImprove module dependencies are required here, not using ES6 export/import */
 // Lib dependencies
 
 
@@ -34,6 +34,7 @@ Yannotate = window._Yannotate = (function(playerElement, opts) {
   this.opts = opts;
 
   YoutubeAPI.loadVideoById(this.opts.videoId);
+  YoutubeAPI.setPlayerElement(playerElement[0]);
 
   // Callback
   YoutubeAPI.onPlayerStarted = this.opts.onPlayerStarted;
@@ -64,6 +65,7 @@ Yannotate.prototype.setVideoDimensions = (function() {
 /*
  * Public: Youtube Iframe API Object
  */
+
 var YoutubeIframeAPI = window._YoutubeIframeAPI = (function() {
   // Loads Youtube IFrame Player API asynchronously.
   var  firstScriptTag = document.getElementsByTagName('script')[0],
@@ -117,6 +119,11 @@ YoutubeIframeAPI.prototype.loadVideoById = (function(id) {
   this.video.id = id;
 });
 
+
+YoutubeIframeAPI.prototype.setPlayerElement = (function(el) {
+  this.video.element = el;
+});
+
 YoutubeIframeAPI.prototype.scale = (function(height, width) {
   this.video.height = height;
   this.video.width = width;
@@ -124,7 +131,7 @@ YoutubeIframeAPI.prototype.scale = (function(height, width) {
 
 YoutubeIframeAPI.prototype.createPlayer = (function() {
   if (this.video.id) {
-    this.player = new YT.Player('yannotate-player', {
+    this.player = new YT.Player(this.video.element.id, {
       height: this.video.height,
       width: this.video.width,
       videoId: this.video.id,
@@ -163,7 +170,7 @@ window.YoutubeAPI = new window._YoutubeIframeAPI();
 (function() {
 
 LoLImprove.Annotate.AnnotateComponent = Ember.Component.extend({
-  layoutName: 'components/analyse',
+  layoutName: 'components/annotate',
 
   init: function() {
     this._super();
@@ -177,8 +184,8 @@ LoLImprove.Annotate.AnnotateComponent = Ember.Component.extend({
     var self = this,
         replayId = self.get("replay").video_id;
 
-    /* Youtube Annotation system (Y-Annotate) */
-    $('#li-player').yannotate({
+    /* Youtube Annotation system (annotate) */
+    $('#annotate-player').yannotate({
       videoId: replayId,
       dimensions: 'relative',
       onPlayerStarted: function() {
@@ -196,6 +203,9 @@ LoLImprove.Annotate.AnnotateComponent = Ember.Component.extend({
     startAnalysis: function() {
       this.set('isAnalysing', true);
       YoutubeAPI.player.playVideo();
+    },
+    addGeneralComment: function() {
+      console.log('Adding general comment');
     },
     addTimeLineEntry: function() {
       console.log(YoutubeAPI.player.getCurrentTime());
@@ -215,28 +225,28 @@ Ember.Handlebars.helper('annotate-ui', LoLImprove.Annotate.AnnotateComponent);
 })();
 (function() {
 
-Ember.Yannotate.PlayerContainer =  Ember.View.extend({
-  templateName: 'yannotate-player',
+LoLImprove.Annotate.PlayerContainer =  Ember.View.extend({
+  templateName: 'annotate-player',
   classNames: ['ember-yannotate-container']
 });
 
-Ember.Yannotate.AnalysesContainer =  Ember.View.extend({
+LoLImprove.Annotate.AnalysesContainer =  Ember.View.extend({
   templateName: 'analyses-container',
   classNames: ['analyses-container']
 });
 
-Ember.Yannotate.GeneralComment =  Ember.View.extend({
+LoLImprove.Annotate.GeneralComment =  Ember.View.extend({
   templateName: 'analysis/general-comment',
   classNames: ['general-comment']
 });
 
-Ember.Yannotate.Timeline =  Ember.View.extend({
+LoLImprove.Annotate.Timeline =  Ember.View.extend({
   tagName: 'ul',
   templateName: 'analysis/timeline',
   classNames: ['timeline']
 });
 
-Ember.Yannotate.TimelineEntry =  Ember.View.extend({
+LoLImprove.Annotate.TimelineEntry =  Ember.View.extend({
   tagName: 'li',
   templateName: 'analysis/timeline-entry',
   classNames: ['timeline-entry'],
@@ -262,7 +272,7 @@ Ember.Yannotate.TimelineEntry =  Ember.View.extend({
 })();
 (function() {
 
-Ember.Yannotate.EditEntryHelper = Ember.TextField.extend({
+LoLImprove.Annotate.EditEntryHelper = Ember.TextField.extend({
   didInsertElement: function() {
     this.$().focus();
   },
@@ -272,7 +282,7 @@ Ember.Yannotate.EditEntryHelper = Ember.TextField.extend({
   }
 });
 
-Ember.Handlebars.helper('edit-entry', Ember.Yannotate.EditEntryHelper);
+Ember.Handlebars.helper('edit-entry', LoLImprove.Annotate.EditEntryHelper);
 
 
 })();
@@ -284,21 +294,31 @@ Ember.Handlebars.helper('edit-entry', Ember.Yannotate.EditEntryHelper);
 })();
 (function() {
 
-Ember.Handlebars.registerBoundHelper('capitalize', function(string) {
-  return string.capitalize();
+Ember.Handlebars.registerBoundHelper('capitalize', function (string) {
+    if (__isString(string)) {
+        return string.capitalize();
+    }
+    ;
 });
-
-Ember.Handlebars.registerBoundHelper('upcase', function(string) {
-  return string.toUpperCase();
+Ember.Handlebars.registerBoundHelper('upcase', function (string) {
+    if (__isString(string)) {
+        return string.toUpperCase();
+    }
+    ;
 });
-
-Ember.Handlebars.registerBoundHelper('excerpt', function(string, length) {
-  if (typeof length == "object")
-    length = 50
-
-  return string.slice(0, length) + "...";
+Ember.Handlebars.registerBoundHelper('excerpt', function (string, length) {
+    if (typeof length == 'object') {
+        var length = 50;
+    }
+    return string.slice(0, length) + '...';
 });
-
+function __isString(string) {
+    if (typeof string === 'string') {
+        return true;
+    } else {
+        throw 'Trying to use string method on ' + typeof string;
+    }
+}
 
 })();
 (function() {
@@ -316,9 +336,9 @@ function program1(depth0,data) {
   data.buffer.push("\n      <strong>");
   data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "analysis.user.league", options) : helperMissing.call(depth0, "capitalize", "analysis.user.league", options))));
   data.buffer.push("</strong>\n    </div>\n\n    ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.GeneralComment", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "LoLImprove.Annotate.GeneralComment", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push("\n    ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.Timeline", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "LoLImprove.Annotate.Timeline", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push("\n  </div>\n");
   return buffer;
   }
@@ -337,7 +357,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 
   data.buffer.push("<div class=\"analysis-general-comment\">\n  ");
-  data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "analysis.content.general", options) : helperMissing.call(depth0, "capitalize", "analysis.content.general", options))));
+  data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "analysis.content.general.content", options) : helperMissing.call(depth0, "capitalize", "analysis.content.general.content", options))));
   data.buffer.push("\n</div>\n");
   return buffer;
   
@@ -429,7 +449,7 @@ function program1(depth0,data) {
   
   var buffer = '';
   data.buffer.push("\n  ");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.TimelineEntry", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "LoLImprove.Annotate.TimelineEntry", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push("\n");
   return buffer;
   }
@@ -440,20 +460,7 @@ function program1(depth0,data) {
   
 });
 
-Ember.TEMPLATES["components/yannotate"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', escapeExpression=this.escapeExpression;
-
-
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.PlayerContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  data.buffer.push("\n");
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Yannotate.AnalysesContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
-  return buffer;
-  
-});
-
-Ember.TEMPLATES["yannotate-player"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["annotate-player"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
@@ -495,7 +502,7 @@ function program5(depth0,data) {
   data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "replay.lane", options) : helperMissing.call(depth0, "capitalize", "replay.lane", options))));
   data.buffer.push(" lane</h2>\n  <strong class=\"replay-match-result\">");
   data.buffer.push(escapeExpression((helper = helpers.upcase || (depth0 && depth0.upcase),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "replay.result", options) : helperMissing.call(depth0, "upcase", "replay.result", options))));
-  data.buffer.push("</strong>\n</div>\n\n<div class=\"replay-container\">\n  <div id=\"yannotate-player\"></div>\n</div>\n\n<div class=\"replay-data\">\n\n  <div class=\"player-information\">\n    <h3>");
+  data.buffer.push("</strong>\n</div>\n\n<div class=\"replay-container\">\n  <div id=\"annotate-player\"></div>\n</div>\n\n<div class=\"replay-data\">\n\n  <div class=\"player-information\">\n    <h3>");
   data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "replay.user.name", options) : helperMissing.call(depth0, "capitalize", "replay.user.name", options))));
   data.buffer.push("</h3>\n    <strong class=\"player-league\">");
   data.buffer.push(escapeExpression((helper = helpers.capitalize || (depth0 && depth0.capitalize),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "replay.user.league", options) : helperMissing.call(depth0, "capitalize", "replay.user.league", options))));
@@ -525,6 +532,19 @@ function program5(depth0,data) {
   stack1 = helpers['if'].call(depth0, "isCurrentAnalyst", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n    </ul>\n  </div>\n</div> <!-- replay-information -->\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/annotate"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "LoLImprove.Annotate.PlayerContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
+  data.buffer.push("\n");
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "LoLImprove.Annotate.AnalysesContainer", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
   return buffer;
   
 });

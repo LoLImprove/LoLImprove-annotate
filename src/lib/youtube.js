@@ -55,6 +55,11 @@ YoutubeIframeAPI.prototype.loadVideoById = (function(id) {
   this.video.id = id;
 });
 
+
+YoutubeIframeAPI.prototype.setPlayerElement = (function(el) {
+  this.video.element = el;
+});
+
 YoutubeIframeAPI.prototype.scale = (function(height, width) {
   this.video.height = height;
   this.video.width = width;
@@ -62,7 +67,7 @@ YoutubeIframeAPI.prototype.scale = (function(height, width) {
 
 YoutubeIframeAPI.prototype.createPlayer = (function() {
   if (this.video.id) {
-    this.player = new YT.Player('yannotate-player', {
+    this.player = new YT.Player(this.video.element.id, {
       height: this.video.height,
       width: this.video.width,
       videoId: this.video.id,

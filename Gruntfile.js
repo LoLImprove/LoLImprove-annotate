@@ -133,6 +133,7 @@ module.exports = function (grunt) {
       all: {
         files: [
                 "src/**/*.js", "src/**/*.hbs",
+                "src/*.sjs", "src/**/*.sjs",
                 "sample-app/app/**/*.js", "sample-app/app/**/*.hbs",
                 "sample-app/app/**/*.css", "sample-app/app/**/*.scss"
                ],
