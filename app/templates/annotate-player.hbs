@@ -1,0 +1,45 @@
+<div class="replay-header">
+  <h2>{{str-capitalize replay.champion}} vs {{str-capitalize replay.matchup}} - {{str-capitalize replay.lane}} lane</h2>
+  <strong class="replay-match-result">{{str-upcase replay.result}}</strong>
+</div>
+
+<div class="replay-container">
+  <div id="annotate-player"></div>
+</div>
+
+<div class="replay-data">
+
+  <div class="player-information">
+    <h3>{{str-capitalize replay.user.name}}</h3>
+    <strong class="player-league">{{str-capitalize replay.user.league}}</strong>
+  </div>
+
+  <div class="replay-description">
+    {{text-excerpt replay.description}}
+  </div>
+
+  <div class="replay-information">
+    <ul>
+      <li>{{replay.kda.k}}/{{replay.kda.d}}//{{replay.kda.a}}</li>
+      <li>{{replay.length}}</li>
+      <li>{{replay.patch}}</li>
+    </ul>
+  </div>
+
+  <div class="replay-toolbar">
+    {{#if isAnalysing}}
+      <button {{action "addGeneralComment"}}>Add a general comment</button>
+      <button {{action "addTimeLineEntry"}}>Add an entry to timeline</button>
+    {{else}}
+      <button {{action "startAnalysis"}}>Analyse !</button>
+    {{/if}}
+
+    <ul>
+      <li><a href="#">Download LPR</a></li>
+      <li><a {{action ""}}>Report</a></li>
+      {{#if isCurrentAnalyst}}
+        <li><a {{action ""}}>Edit</a></li>
+      {{/if}}
+    </ul>
+  </div>
+</div> <!-- replay-information -->

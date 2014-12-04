@@ -1,126 +1,45 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   '../ember-cli-sweetjs' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.32
 4 verbose node symlink /usr/bin/node
 5 verbose readDependencies using package.json deps
-6 verbose install where, deps [ '/home/gaby/Work/LoLImprove/LoLImprove-annotate',
-6 verbose install   [ 'grunt',
-6 verbose install     'grunt-contrib-clean',
-6 verbose install     'grunt-contrib-sass',
-6 verbose install     'grunt-contrib-jshint',
-6 verbose install     'grunt-contrib-qunit',
-6 verbose install     'grunt-contrib-sweet.js',
-6 verbose install     'grunt-contrib-uglify',
-6 verbose install     'grunt-contrib-watch',
-6 verbose install     'grunt-contrib-copy',
-6 verbose install     'grunt-neuter',
-6 verbose install     'grunt-ember-templates',
-6 verbose install     'grunt-jsdoc',
-6 verbose install     'grunt-bower-task',
-6 verbose install     'grunt-release-it' ] ]
-7 info preinstall ember-yannotate@0.0.0
-8 verbose readDependencies using package.json deps
-9 verbose already installed skipping grunt-contrib-sass@~0.8.1 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-10 verbose already installed skipping grunt-contrib-jshint@~0.6.3 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-11 verbose already installed skipping grunt-contrib-qunit@~0.2.2 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-12 verbose cache add [ 'grunt-contrib-sweet.js@*', null ]
-13 verbose cache add name=undefined spec="grunt-contrib-sweet.js@*" args=["grunt-contrib-sweet.js@*",null]
-14 verbose parsed url { protocol: null,
-14 verbose parsed url   slashes: null,
-14 verbose parsed url   auth: null,
-14 verbose parsed url   host: null,
-14 verbose parsed url   port: null,
-14 verbose parsed url   hostname: null,
-14 verbose parsed url   hash: null,
-14 verbose parsed url   search: null,
-14 verbose parsed url   query: null,
-14 verbose parsed url   pathname: 'grunt-contrib-sweet.js@*',
-14 verbose parsed url   path: 'grunt-contrib-sweet.js@*',
-14 verbose parsed url   href: 'grunt-contrib-sweet.js@*' }
-15 verbose already installed skipping grunt-contrib-uglify@* /home/gaby/Work/LoLImprove/LoLImprove-annotate
-16 verbose already installed skipping grunt-contrib-watch@* /home/gaby/Work/LoLImprove/LoLImprove-annotate
-17 verbose already installed skipping grunt-contrib-copy@~0.4.1 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-18 verbose cache add name="grunt-contrib-sweet.js" spec="*" args=["grunt-contrib-sweet.js","*"]
-19 verbose parsed url { protocol: null,
-19 verbose parsed url   slashes: null,
-19 verbose parsed url   auth: null,
-19 verbose parsed url   host: null,
-19 verbose parsed url   port: null,
-19 verbose parsed url   hostname: null,
-19 verbose parsed url   hash: null,
-19 verbose parsed url   search: null,
-19 verbose parsed url   query: null,
-19 verbose parsed url   pathname: '*',
-19 verbose parsed url   path: '*',
-19 verbose parsed url   href: '*' }
-20 verbose addNamed [ 'grunt-contrib-sweet.js', '*' ]
-21 verbose addNamed [ null, '*' ]
-22 verbose already installed skipping grunt-neuter@~0.4.0 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-23 silly lockFile bb7a4531-grunt-contrib-sweet-js grunt-contrib-sweet.js@*
-24 verbose lock grunt-contrib-sweet.js@* /home/gaby/.npm/bb7a4531-grunt-contrib-sweet-js.lock
-25 silly addNameRange { name: 'grunt-contrib-sweet.js', range: '*', hasData: false }
-26 verbose already installed skipping grunt-ember-templates@~0.4.10 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-27 verbose request where is /grunt-contrib-sweet.js
-28 verbose request registry https://registry.npmjs.org/
-29 verbose request id fb622019a7d71c64
-30 verbose url raw /grunt-contrib-sweet.js
-31 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-contrib-sweet.js' ]
-32 verbose url resolved https://registry.npmjs.org/grunt-contrib-sweet.js
-33 verbose request where is https://registry.npmjs.org/grunt-contrib-sweet.js
-34 info trying registry request attempt 1 at 15:06:19
-35 http GET https://registry.npmjs.org/grunt-contrib-sweet.js
-36 verbose already installed skipping grunt-jsdoc@* /home/gaby/Work/LoLImprove/LoLImprove-annotate
-37 verbose already installed skipping grunt-bower-task@~0.4.0 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-38 verbose already installed skipping grunt-release-it@~0.2.0 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-39 verbose already installed skipping grunt@~0.4.5 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-40 verbose already installed skipping grunt-contrib-clean@~0.4.1 /home/gaby/Work/LoLImprove/LoLImprove-annotate
-41 http 404 https://registry.npmjs.org/grunt-contrib-sweet.js
-42 verbose headers { date: 'Thu, 20 Nov 2014 14:06:20 GMT',
-42 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-42 verbose headers   'content-type': 'application/json',
-42 verbose headers   'cache-control': 'max-age=0',
-42 verbose headers   'content-length': '52',
-42 verbose headers   'accept-ranges': 'bytes',
-42 verbose headers   via: '1.1 varnish',
-42 verbose headers   age: '0',
-42 verbose headers   'x-served-by': 'cache-ams4136-AMS',
-42 verbose headers   'x-cache': 'MISS',
-42 verbose headers   'x-cache-hits': '0',
-42 verbose headers   'x-timer': 'S1416492379.888175,VS0,VE651',
-42 verbose headers   'keep-alive': 'timeout=10, max=50',
-42 verbose headers   connection: 'Keep-Alive' }
-43 silly registry.get cb [ 404,
-43 silly registry.get   { date: 'Thu, 20 Nov 2014 14:06:20 GMT',
-43 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-43 silly registry.get     'content-type': 'application/json',
-43 silly registry.get     'cache-control': 'max-age=0',
-43 silly registry.get     'content-length': '52',
-43 silly registry.get     'accept-ranges': 'bytes',
-43 silly registry.get     via: '1.1 varnish',
-43 silly registry.get     age: '0',
-43 silly registry.get     'x-served-by': 'cache-ams4136-AMS',
-43 silly registry.get     'x-cache': 'MISS',
-43 silly registry.get     'x-cache-hits': '0',
-43 silly registry.get     'x-timer': 'S1416492379.888175,VS0,VE651',
-43 silly registry.get     'keep-alive': 'timeout=10, max=50',
-43 silly registry.get     connection: 'Keep-Alive' } ]
-44 silly lockFile bb7a4531-grunt-contrib-sweet-js grunt-contrib-sweet.js@*
-45 silly lockFile bb7a4531-grunt-contrib-sweet-js grunt-contrib-sweet.js@*
-46 error 404 404 Not Found: grunt-contrib-sweet.js
-46 error 404
-46 error 404 'grunt-contrib-sweet.js' is not in the npm registry.
-46 error 404 You should bug the author to publish it
-46 error 404 It was specified as a dependency of 'ember-yannotate'
-46 error 404
-46 error 404 Maybe try 'npm search grunt contrib sweet'
-46 error 404
-46 error 404 Note that you can also install from a
-46 error 404 tarball, folder, or http url, or git url.
-47 error System Linux 3.13.0-37-generic
-48 error command "/usr/bin/node" "/usr/bin/npm" "install"
-49 error cwd /home/gaby/Work/LoLImprove/LoLImprove-annotate
-50 error node -v v0.10.32
-51 error npm -v 1.4.28
-52 error code E404
-53 verbose exit [ 1, true ]
+6 verbose cache add [ '../ember-cli-sweetjs', null ]
+7 verbose cache add name=undefined spec="../ember-cli-sweetjs" args=["../ember-cli-sweetjs",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: '../ember-cli-sweetjs',
+8 verbose parsed url   path: '../ember-cli-sweetjs',
+8 verbose parsed url   href: '../ember-cli-sweetjs' }
+9 silly lockFile b9ab0552-ember-cli-sweetjs ../ember-cli-sweetjs
+10 verbose lock ../ember-cli-sweetjs /home/gaby/.npm/b9ab0552-ember-cli-sweetjs.lock
+11 silly lockFile b9ab0552-ember-cli-sweetjs ../ember-cli-sweetjs
+12 silly lockFile b9ab0552-ember-cli-sweetjs ../ember-cli-sweetjs
+13 error addLocal Could not install ../ember-cli-sweetjs
+14 error Failed to parse json
+14 error Unexpected token ,
+15 error File: ../ember-cli-sweetjs/package.json
+16 error Failed to parse package.json data.
+16 error package.json must be actual JSON, not just JavaScript.
+16 error
+16 error This is not a bug in npm.
+16 error Tell the package author to fix their package.json file. JSON.parse
+17 error System Linux 3.13.0-37-generic
+18 error command "/usr/bin/node" "/usr/bin/npm" "install" "--save" "../ember-cli-sweetjs"
+19 error cwd /home/gaby/Work/LoLImprove/LoLImprove-annotate
+20 error node -v v0.10.32
+21 error npm -v 1.4.28
+22 error file ../ember-cli-sweetjs/package.json
+23 error code EJSONPARSE
+24 verbose exit [ 1, true ]

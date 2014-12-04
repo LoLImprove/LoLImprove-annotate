@@ -1,21 +1,25 @@
-LoLImprove-annotate needs your project to provide the following libraries:
+# Lolimprove-annotate
 
-Bower-fetchable:
-- Bootstrap
+This README outlines the details of collaborating on this Ember addon.
 
+## Installation
 
-## Bootstrap
+* `git clone` this repository
+* `npm install`
+* `bower install`
 
-- `$ npm install` to install dependencies
-- `$ cd sample-app`
-- `$ bower install`
+## Running
 
-For the sample app to work you need to bower link the LoLImprove-annotate module.
+* `ember server`
+* Visit your app at http://localhost:4200.
 
-```
-$ grunt dist
-$ cd dist/
-$ bower link
-$ cd ../sample-app/
-$ bower link dist
-```
+## Running Tests
+
+* `ember test`
+* `ember test --server`
+
+## Building
+
+* `ember build`
+
+For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).

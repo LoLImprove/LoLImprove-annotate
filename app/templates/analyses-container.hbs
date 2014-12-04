@@ -1,0 +1,11 @@
+{{#each analysis in replay.analyses}}
+  <div class="analysis">
+    <div class="analyst-information">
+      {{str-capitalize analysis.user.name}}
+      <strong>{{str-capitalize analysis.user.league}}</strong>
+    </div>
+
+    {{view "analysis/general-comment"}}
+    {{view "analysis/timeline"}}
+  </div>
+{{/each}}
