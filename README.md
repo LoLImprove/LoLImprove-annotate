@@ -1,6 +1,5 @@
-# Lolimprove-annotate
-
-This README outlines the details of collaborating on this Ember addon.
+# LoLImprove-Annotate
+(ember-addon)
 
 ## Installation
 
@@ -10,7 +9,9 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Running
 
-* `ember server`
+To run the dummy application `tests/dummy`:
+
+* `ember server --proxy http://private-anon-bf0335454-lolimprove.apiary-mock.com`
 * Visit your app at http://localhost:4200.
 
 ## Running Tests
