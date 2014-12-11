@@ -1,17 +1,8 @@
 import Ember from "ember";
-
-// TODO: Extract
-function __isString(string) {
-  if (typeof string === "string") {
-    return true;
-  } else {
-    throw "Trying to use string method on " + (typeof string);
-  }
-
-}
+import Utils from "./helpers-utils";
 
 export default Ember.Handlebars.makeBoundHelper(function(string) {
-  if (__isString(string)) {
+  if (Utils.isString(string)) {
     return string.capitalize();
   }
 });

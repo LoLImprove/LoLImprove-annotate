@@ -8,6 +8,7 @@ var app = new EmberAddon({
 
 app.import('vendor/youtube.js');
 app.import('vendor/jquery-yannotate.js');
+app.import('bower_components/ember-model/ember-model.js');
 
 // Use `app.import` to add additional libraries to the generated
 // output files.

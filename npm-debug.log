@@ -1,45 +1,116 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node',
-1 verbose cli   '/usr/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   '--save',
-1 verbose cli   '../ember-cli-sweetjs' ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.32
 4 verbose node symlink /usr/bin/node
 5 verbose readDependencies using package.json deps
-6 verbose cache add [ '../ember-cli-sweetjs', null ]
-7 verbose cache add name=undefined spec="../ember-cli-sweetjs" args=["../ember-cli-sweetjs",null]
-8 verbose parsed url { protocol: null,
-8 verbose parsed url   slashes: null,
-8 verbose parsed url   auth: null,
-8 verbose parsed url   host: null,
-8 verbose parsed url   port: null,
-8 verbose parsed url   hostname: null,
-8 verbose parsed url   hash: null,
-8 verbose parsed url   search: null,
-8 verbose parsed url   query: null,
-8 verbose parsed url   pathname: '../ember-cli-sweetjs',
-8 verbose parsed url   path: '../ember-cli-sweetjs',
-8 verbose parsed url   href: '../ember-cli-sweetjs' }
-9 silly lockFile b9ab0552-ember-cli-sweetjs ../ember-cli-sweetjs
-10 verbose lock ../ember-cli-sweetjs /home/gaby/.npm/b9ab0552-ember-cli-sweetjs.lock
-11 silly lockFile b9ab0552-ember-cli-sweetjs ../ember-cli-sweetjs
-12 silly lockFile b9ab0552-ember-cli-sweetjs ../ember-cli-sweetjs
-13 error addLocal Could not install ../ember-cli-sweetjs
-14 error Failed to parse json
-14 error Unexpected token ,
-15 error File: ../ember-cli-sweetjs/package.json
-16 error Failed to parse package.json data.
-16 error package.json must be actual JSON, not just JavaScript.
-16 error
-16 error This is not a bug in npm.
-16 error Tell the package author to fix their package.json file. JSON.parse
-17 error System Linux 3.13.0-37-generic
-18 error command "/usr/bin/node" "/usr/bin/npm" "install" "--save" "../ember-cli-sweetjs"
-19 error cwd /home/gaby/Work/LoLImprove/LoLImprove-annotate
-20 error node -v v0.10.32
-21 error npm -v 1.4.28
-22 error file ../ember-cli-sweetjs/package.json
-23 error code EJSONPARSE
-24 verbose exit [ 1, true ]
+6 verbose install where, deps [ '/home/gaby/Work/LoLImprove/LoLImprove-annotate',
+6 verbose install   [ 'body-parser',
+6 verbose install     'broccoli-asset-rev',
+6 verbose install     'broccoli-ember-hbs-template-compiler',
+6 verbose install     'ember-cli',
+6 verbose install     'ember-cli-ic-ajax',
+6 verbose install     'ember-cli-inject-live-reload',
+6 verbose install     'ember-cli-qunit',
+6 verbose install     'ember-model',
+6 verbose install     'express',
+6 verbose install     'glob' ] ]
+7 info preinstall lolimprove-annotate@0.0.1
+8 verbose readDependencies using package.json deps
+9 verbose already installed skipping body-parser@^1.2.0 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+10 verbose already installed skipping broccoli-asset-rev@0.1.1 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+11 verbose already installed skipping broccoli-ember-hbs-template-compiler@^1.6.1 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+12 verbose already installed skipping ember-cli@0.0.46 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+13 verbose already installed skipping ember-cli-ic-ajax@0.1.1 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+14 verbose already installed skipping ember-cli-inject-live-reload@^1.0.2 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+15 verbose already installed skipping ember-cli-qunit@0.1.0 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+16 verbose cache add [ 'ember-model@^0.0.14', null ]
+17 verbose cache add name=undefined spec="ember-model@^0.0.14" args=["ember-model@^0.0.14",null]
+18 verbose parsed url { protocol: null,
+18 verbose parsed url   slashes: null,
+18 verbose parsed url   auth: null,
+18 verbose parsed url   host: null,
+18 verbose parsed url   port: null,
+18 verbose parsed url   hostname: null,
+18 verbose parsed url   hash: null,
+18 verbose parsed url   search: null,
+18 verbose parsed url   query: null,
+18 verbose parsed url   pathname: 'ember-model@^0.0.14',
+18 verbose parsed url   path: 'ember-model@^0.0.14',
+18 verbose parsed url   href: 'ember-model@^0.0.14' }
+19 verbose already installed skipping express@^4.8.5 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+20 verbose already installed skipping glob@^4.0.5 /home/gaby/Work/LoLImprove/LoLImprove-annotate
+21 verbose cache add name="ember-model" spec="^0.0.14" args=["ember-model","^0.0.14"]
+22 verbose parsed url { protocol: null,
+22 verbose parsed url   slashes: null,
+22 verbose parsed url   auth: null,
+22 verbose parsed url   host: null,
+22 verbose parsed url   port: null,
+22 verbose parsed url   hostname: null,
+22 verbose parsed url   hash: null,
+22 verbose parsed url   search: null,
+22 verbose parsed url   query: null,
+22 verbose parsed url   pathname: '^0.0.14',
+22 verbose parsed url   path: '^0.0.14',
+22 verbose parsed url   href: '^0.0.14' }
+23 verbose addNamed [ 'ember-model', '^0.0.14' ]
+24 verbose addNamed [ null, '=0.0.14' ]
+25 silly lockFile e0a4c61c-ember-model-0-0-14 ember-model@^0.0.14
+26 verbose lock ember-model@^0.0.14 /home/gaby/.npm/e0a4c61c-ember-model-0-0-14.lock
+27 silly addNameRange { name: 'ember-model', range: '=0.0.14', hasData: false }
+28 verbose request where is /ember-model
+29 verbose request registry https://registry.npmjs.org/
+30 verbose request id 61433479a4e9be46
+31 verbose url raw /ember-model
+32 verbose url resolving [ 'https://registry.npmjs.org/', './ember-model' ]
+33 verbose url resolved https://registry.npmjs.org/ember-model
+34 verbose request where is https://registry.npmjs.org/ember-model
+35 info trying registry request attempt 1 at 14:42:56
+36 http GET https://registry.npmjs.org/ember-model
+37 http 404 https://registry.npmjs.org/ember-model
+38 verbose headers { date: 'Thu, 04 Dec 2014 17:53:52 GMT',
+38 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+38 verbose headers   'content-type': 'application/json',
+38 verbose headers   'cache-control': 'max-age=0',
+38 verbose headers   'content-length': '52',
+38 verbose headers   'accept-ranges': 'bytes',
+38 verbose headers   via: '1.1 varnish',
+38 verbose headers   age: '0',
+38 verbose headers   'x-served-by': 'cache-fra1232-FRA',
+38 verbose headers   'x-cache': 'MISS',
+38 verbose headers   'x-cache-hits': '0',
+38 verbose headers   'x-timer': 'S1417715632.615919,VS0,VE112',
+38 verbose headers   'keep-alive': 'timeout=10, max=50',
+38 verbose headers   connection: 'Keep-Alive' }
+39 silly registry.get cb [ 404,
+39 silly registry.get   { date: 'Thu, 04 Dec 2014 17:53:52 GMT',
+39 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+39 silly registry.get     'content-type': 'application/json',
+39 silly registry.get     'cache-control': 'max-age=0',
+39 silly registry.get     'content-length': '52',
+39 silly registry.get     'accept-ranges': 'bytes',
+39 silly registry.get     via: '1.1 varnish',
+39 silly registry.get     age: '0',
+39 silly registry.get     'x-served-by': 'cache-fra1232-FRA',
+39 silly registry.get     'x-cache': 'MISS',
+39 silly registry.get     'x-cache-hits': '0',
+39 silly registry.get     'x-timer': 'S1417715632.615919,VS0,VE112',
+39 silly registry.get     'keep-alive': 'timeout=10, max=50',
+39 silly registry.get     connection: 'Keep-Alive' } ]
+40 silly lockFile e0a4c61c-ember-model-0-0-14 ember-model@^0.0.14
+41 silly lockFile e0a4c61c-ember-model-0-0-14 ember-model@^0.0.14
+42 error 404 404 Not Found: ember-model
+42 error 404
+42 error 404 'ember-model' is not in the npm registry.
+42 error 404 You should bug the author to publish it
+42 error 404 It was specified as a dependency of 'lolimprove-annotate'
+42 error 404
+42 error 404 Note that you can also install from a
+42 error 404 tarball, folder, or http url, or git url.
+43 error System Linux 3.13.0-37-generic
+44 error command "/usr/bin/node" "/usr/bin/npm" "install"
+45 error cwd /home/gaby/Work/LoLImprove/LoLImprove-annotate
+46 error node -v v0.10.32
+47 error npm -v 1.4.28
+48 error code E404
+49 verbose exit [ 1, true ]

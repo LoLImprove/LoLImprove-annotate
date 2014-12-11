@@ -3,11 +3,19 @@ import Ember from "ember";
 /*
  * LoLImprove.Annotate.ReplayShowRoute
  */
-export default  Ember.Route.extend({
+export default Ember.Route.extend({
   model: function() {
-    return Ember.Object.create({name: 'Mathew'});
+    return this.get('store').modelFor('replay').find(2);
   },
   setupController: function(controller, model) {
-     controller.set('model', model);
+    controller.set('replay', model);
+  },
+
+  actions: {
+    loading: function(transition, originRoute) {
+      console.log('loading...');
+      // substate implementation when returning `true`
+      return true;
+    }
   }
 });

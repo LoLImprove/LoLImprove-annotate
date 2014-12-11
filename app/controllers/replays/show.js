@@ -5,9 +5,13 @@ import Fixtures from 'lolimprove-annotate/fixtures';
  * LoLImprove.Annotate.ReplaysShowController
  */
 export default Ember.Controller.extend({
-  user: Fixtures.user,
-  replay: Fixtures.replay,
+//  user: Fixtures.user,
+  currentUser: function() {
+    return Fixtures.user;
+  },
+
   greetings: function() {
-    return 'Hello' + this.get('model.name');
-  }.property('model.name')
+    console.log('greeting');
+    return 'Hello' + this.get('replay.matchup');
+  }.property('model.matchup')
 });

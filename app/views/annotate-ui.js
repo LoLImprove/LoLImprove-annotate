@@ -3,19 +3,23 @@ import Ember from "ember";
 /*
  * LoLImprove.Annotate.AnnotateUIComponent
  */
-export default Ember.Component.extend({
-  layoutName: 'components/annotate',
+export default Ember.View.extend({
+  layoutName: 'annotate-ui',
 
   init: function() {
     this._super();
-
     this.set('isCurrentAnalyst', false);
   },
 
-  didInsertElement: function() {
+  insertVideo: function() {
     var self = this,
-        replayId = self.get("replay").video_id;
+        replay = self.get("controller.replay"),
+        replayId = replay.get('video_id');
 
+    console.log('Asking for user');
+    replay.get('user');
+    console.log('The end.');
+    //console.log(replay.user);
     /* Youtube Annotation system (annotate) */
     $('#annotate-player').yannotate({
       videoId: replayId,
@@ -25,10 +29,13 @@ export default Ember.Component.extend({
       }
     });
 
-    if (this.replay.user.id == this.user.id) {
+    if (replay.user_id == this.get("controller.currentUser")) {
       this.set('isCurrentAnalyst', true);
     }
 
+  }.observes('controller.replay.isLoaded'),
+
+  didInsertElement: function() {
   },
 
   actions: {
