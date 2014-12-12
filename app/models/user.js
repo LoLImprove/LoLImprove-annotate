@@ -16,9 +16,8 @@ var UserModel = Ember.Model.extend({
   created_at:      Ember.attr(Date),
   updated_at:      Ember.attr(Date),
 
-  //replays: Ember.hasMany("replay", { key: 'replay_ids' })
-  // analyses_ids: [2, 3],
-  // replay_ids: [1, 2, 3],
+  replays: Ember.hasMany("replay", { key: 'replay_ids' })
+  //analyses: Ember.hasMany("analysis", { key: 'analyses_ids' })
 });
 
 UserModel.reopenClass({

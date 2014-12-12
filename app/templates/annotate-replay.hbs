@@ -1,11 +1,10 @@
 <div class="replay-header">
-
   <h2>{{str-capitalize replay.champion}} vs {{str-capitalize replay.matchup}} - {{str-capitalize replay.lane}} lane</h2>
   <strong class="replay-match-result">{{str-upcase replay.result}}</strong>
 </div>
 
 <div class="replay-container">
-  <div id="annotate-player"></div>
+  {{view 'player'}}
 </div>
 
 <div class="replay-data">
@@ -29,10 +28,10 @@
 
   <div class="replay-toolbar">
     {{#if isAnalysing}}
-      <button {{action "addGeneralComment"}}>Add a general comment</button>
-      <button {{action "addTimeLineEntry"}}>Add an entry to timeline</button>
+      <button {{action "addGeneralComment" target="view"}}>Add a general comment</button>
+      <button {{action "addTimeLineEntry" target="view"}}>Add an entry to timeline</button>
     {{else}}
-      <button {{action "startAnalysis"}}>Analyse !</button>
+      <button {{action "startAnalysis" target="view"}}>Analyse !</button>
     {{/if}}
 
     <ul>
