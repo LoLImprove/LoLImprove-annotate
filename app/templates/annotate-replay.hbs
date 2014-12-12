@@ -1,6 +1,6 @@
 <div class="replay-header">
   <h2>{{str-capitalize replay.champion}} vs {{str-capitalize replay.matchup}} - {{str-capitalize replay.lane}} lane</h2>
-  <strong class="replay-match-result">{{str-upcase replay.result}}</strong>
+  <strong class="replay-match-result">{{str-upcase replay.matchResult}}</strong>
 </div>
 
 <div class="replay-container">
@@ -10,12 +10,19 @@
 <div class="replay-data">
 
   <div class="player-information">
+    <img {{bind-attr src=replay.user.avatar}}>
     <h3>{{str-capitalize replay.user.name}}</h3>
     <strong class="player-league">{{str-capitalize replay.user.league}}</strong>
   </div>
 
   <div class="replay-description">
-    {{text-excerpt replay.description}}
+    {{#if view.fullDescription}}
+      {{replay.description}}
+      <button {{action "toggleDescription" target="view"}}>Less...</button>
+    {{else}}
+      {{text-excerpt replay.description}}
+      <button {{action "toggleDescription" target="view"}}>More...</button>
+    {{/if}}
   </div>
 
   <div class="replay-information">
@@ -35,10 +42,12 @@
     {{/if}}
 
     <ul>
-      <li><a href="#">Download LPR</a></li>
-      <li><a {{action ""}}>Report</a></li>
+      {{#if replay.replay_file}}
+        <li><a {{bind-attr href=replay.replay_file}}>Download LPR</a></li>
+      {{/if}}
+      <li><a href="#" {{action "reportReplay"}}>Report</a></li>
       {{#if isCurrentAnalyst}}
-        <li><a {{action ""}}>Edit</a></li>
+        <li><a href="#" {{action "editReplay"}}>Edit</a></li>
       {{/if}}
     </ul>
   </div>

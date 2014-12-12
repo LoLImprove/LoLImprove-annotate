@@ -1,11 +1,28 @@
+Latest analyses
+
 {{#each analysis in replay.analyses}}
   <div class="analysis">
-    <div class="analyst-information">
-      {{str-capitalize analysis.user.name}}
-      <strong>{{str-capitalize analysis.user.league}}</strong>
+    <div class="analysis-meta">
+      <div class="analyst-information">
+        <img {{bind-attr src=analysis.user.avatar}}>
+        {{str-capitalize analysis.user.name}}
+        <strong>{{str-capitalize analysis.user.league}}</strong>
+      </div>
+      <div class="votes">
+        {{analysis.votes}}
+      </div>
+      <div class="toolbar">
+        {{time-ago-in-words analysis.updated_at}}
+        <a href="#" {{action "reportAnalysis"}}>Report</a>
+      </div>
+      <div class="toggle-analysis">
+        <a href="#" {{action "toggleAnalysis"}}>Collapse this analysis</a>
+      </div>
     </div>
 
-    {{view "analysis/general-comment"}}
-    {{view "analysis/timeline"}}
+    <div class="analysis-content">
+      {{view "analysis/general-comment"}}
+      {{view "analysis/timeline"}}
+    </div>
   </div>
 {{/each}}

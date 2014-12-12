@@ -7,8 +7,13 @@ import Ember from 'ember';
 export default Ember.View.extend({
   templateName: 'annotate-replay',
   classNames: ['li-replay-container'],
+  fullDescription: false,
 
   actions: {
+    toggleDescription: function() {
+      this.set('fullDescription', !this.get('fullDescription'));
+    },
+
     startAnalysis: function() {
       var controller = this.get('controller'),
           player     = this.container.lookup('view:player');

@@ -1,8 +1,7 @@
 import Ember from "ember";
-import Utils from "./helpers-utils";
 
 export default Ember.Handlebars.makeBoundHelper(function(string, length) {
-  if (Utils.isString(string)) {
+  if (_.isString(string)) {
     if (typeof length === "object") {
       var length = 50; // Default value
     }

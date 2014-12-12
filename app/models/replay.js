@@ -19,7 +19,11 @@ var ReplayModel = Ember.Model.extend({
   updated_at:  Ember.attr(Date),
 
   user: Ember.belongsTo("user", { key: 'user_id' }),
-  //analyses: Ember.hasMany("analysis", {key: 'analyses_ids'})
+  analyses: Ember.hasMany("analysis", {key: 'analyses_ids'}),
+
+  matchResult: function() {
+    return this.get('victory') ? 'victory' : 'defeat';
+  }.property('victory')
 });
 
 ReplayModel.reopenClass({
