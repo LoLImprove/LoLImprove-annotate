@@ -1,9 +1,9 @@
 import Ember from "ember";
+import Model from "lolimprove-annotate/lib/lolimprove-model";
+import RESTNestedAdapter from "lolimprove-annotate/adapters/rest-nested-adapter";
 import Serializers from "./attribute-serializers";
 
-var Bool = Serializers.Boolean;
-
-var GeneralCommentModel = Ember.Model.extend({
+var GeneralCommentModel = Model.extend({
   id:          Ember.attr(Number),
   content:     Ember.attr(String),
   created_at:  Ember.attr(Date),
@@ -15,9 +15,9 @@ var GeneralCommentModel = Ember.Model.extend({
 });
 
 GeneralCommentModel.reopenClass({
-  modelName: 'general-note',
-  url: '/general_note',
-  adapter: Ember.RESTAdapter.create()
+  modelName: 'generalComment',
+  url: '/analyses/:analysis_id/general_note',
+  adapter: RESTNestedAdapter.create()
 });
 
 export default GeneralCommentModel;

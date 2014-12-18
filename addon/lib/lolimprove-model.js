@@ -30,43 +30,58 @@ Ember.Model.reopen({
    *
    */
   createRelationsMap: function() {
-    var relations = this.constructor.getRelationships();
-    var self = this;
+    var relations  = this.constructor.getRelationships(),
+        modelName  = this.constructor.modelName,
+        primaryKey = Ember.get(this.constructor, 'primaryKey'),
+        id   = Ember.get(this, primaryKey),
+        self = this;
 
     _.each(relations, function(relation) {
-      var isHasMany = (Ember.Inflector.inflector.pluralize(relation) == relation),
-          _key      = isHasMany ? relation + '.@each' : relation + '.isLoaded'; // bit hackish
+      var isHasMany = (Ember.Inflector.inflector.pluralize(relation) === relation),
+          _key      = isHasMany ? relation + '.@each' : relation; // bit hackish
 
-      Ember.addObserver(self, _key, self, function() {
-        var primaryKey = Ember.get(this.constructor, 'primaryKey'),
-            id = self.get(primaryKey);
+      //console.log(relation, isHasMany);
 
-        if (isHasMany) {
+      if (isHasMany) {
+        Ember.addObserver(self, _key, self, function() {
           _.each(this.get( relation + '.content'), function(record) {
-            self._setRecordRelationMap(record, self.constructor.modelName, id);
+            self._logRelationMap(modelName, relation ,id);
+            self._setRecordRelationMap(record, modelName, id);
           });
-        } else {
-          var record = this.get(relation);
-          self._setRecordRelationMap(record, self.constructor.modelName, id);
-        }
-      });
+        });
+      } else {
+        self.addObserver(_key, self, function() {
+          var relationAdapter = this.container.lookup('model:' + relation).constructor.adapter;
+          var getParentIdFunc = relationAdapter.get('getParentId');
+
+          relationAdapter.set('getParentId', function(record, relationName) {
+            self._logRelationMap(modelName, relation ,id);
+            self._setRecordRelationMap(record, modelName, id);
+            return getParentIdFunc(record, relationName);
+          });
+        });
+      }
     });
 
     this.set('_isMapped', true);
   },
 
   _setRecordRelationMap: function(record, relation, id) {
-    var _relations = record.relationsMap || {}
+    var _relations = record.relationsMap || {};
     _relations[Ember.Inflector.inflector.singularize(relation)] = id;
     Ember.set(record, 'relationsMap', _relations);
     return _relations;
   },
+
+  _logRelationMap: function(model, relation, id) {
+    console.debug('Setting relationMap for ' + model + '#' + id + ' -> ' + relation);
+  },
 });
 
 /*
- * If the relations are not mapped yet, we call the createRelationsMap method when the object is populated.
+ * If the relations are not mapped yet, we call the createRelationsMap method 5when the object is populated.
  */
 export default Ember.Model.extend({
   setIsMapped: function() { this.set('_isMapped', false); }.on('init'),
-  _setRelationMap: function() { if (!this.get('_isMapped')) { this.createRelationsMap.apply(this); } }.observes('_data')
+  _setRelationMap: function() { if (!this.get('_isMapped')) { this.createRelationsMap.apply(this); } }.on('init')
 })

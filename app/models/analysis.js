@@ -1,7 +1,8 @@
 import Ember from "ember";
+import Model from "lolimprove-annotate/lib/lolimprove-model";
 import RESTNestedAdapter from "lolimprove-annotate/adapters/rest-nested-adapter";
 
-var AnalysisModel = Ember.Model.extend({
+var AnalysisModel = Model.extend({
   id:          Ember.attr(Number),
   votes:       Ember.attr(Number),
   status:      Ember.attr(String),

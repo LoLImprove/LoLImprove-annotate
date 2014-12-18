@@ -10,8 +10,9 @@ var get = Ember.get,
 var RESTNestedAdapter = Ember.RESTAdapter.extend({
 
   getParentId: function(record, relationName) {
-    if (record._reference.relationsMap) {
-      return record._reference.relationsMap[relationName];
+    var idMap = record._reference.relationsMap || record.relationsMap
+    if (idMap) {
+      return idMap[relationName];
     } else {
       console.log(record, relationName);
       throw new Error('Ember.RESTNestedAdapter requires your model to have a relationsMap property.');
