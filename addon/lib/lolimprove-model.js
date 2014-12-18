@@ -46,8 +46,7 @@ Ember.Model.reopen({
         Ember.addObserver(self, _key, self, function() {
           // Here we go through each 'empty' relation and set the relationMap
           _.each(this.get( relation + '.content'), function(record) {
-            self._logRelationMap(modelName, relation ,id);
-            self._setRecordRelationMap(record, modelName, id);
+            self._setRecordRelationMap(record, modelName, id, relation);
           });
         });
       } else {
@@ -60,8 +59,7 @@ Ember.Model.reopen({
           var getParentIdFunc = relationAdapter.get('getParentId');
 
           relationAdapter.set('getParentId', function(record, relationName) {
-            self._logRelationMap(modelName, relation ,id);
-            self._setRecordRelationMap(record, modelName, id); // Maybe conditional ? Need to see how it when record gets updated, etc...
+            self._setRecordRelationMap(record, modelName, id, relation);
             return getParentIdFunc(record, relationName);
           });
         });
@@ -72,10 +70,15 @@ Ember.Model.reopen({
   },
 
   /* Sets the relationMap property on a record */
-  _setRecordRelationMap: function(record, relation, id) {
+  _setRecordRelationMap: function(record, relation, id, modelName) {
     var _relations = record.relationsMap || {};
-    _relations[Ember.Inflector.inflector.singularize(relation)] = id;
-    Ember.set(record, 'relationsMap', _relations);
+    var key = Ember.Inflector.inflector.singularize(relation);
+
+    if (!_relations[key]) {
+      this._logRelationMap(relation, modelName, id);
+      _relations[key] = id;
+      Ember.set(record, 'relationsMap', _relations);
+    }
     return _relations;
   },
 
