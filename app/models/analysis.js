@@ -1,4 +1,5 @@
 import Ember from "ember";
+import RESTNestedAdapter from "lolimprove-annotate/adapters/rest-nested-adapter";
 
 var AnalysisModel = Ember.Model.extend({
   id:          Ember.attr(Number),
@@ -9,13 +10,15 @@ var AnalysisModel = Ember.Model.extend({
 
   user: Ember.belongsTo("user", { key: 'user_id' }),
   replay: Ember.belongsTo("replay", { key: 'replay_id' }),
-  generalNote: Ember.belongsTo("generalNote", { key: 'general_note_id' }),
-  timelineEntries: Ember.hasMany("timeline-entries", {key: 'timeline_entries_ids'})
+  generalComment: Ember.belongsTo("general-comment", { key: 'general_note_id' }),
+
+  //timelineEntries: Ember.hasMany("timeline-entries", {key: 'timeline_entries_ids'})
 });
 
 AnalysisModel.reopenClass({
-  url: '/analyses',
-  adapter: Ember.RESTAdapter.create()
+  modelName: 'analysis',
+  url: '/replays/:replay_id/analyses',
+  adapter: RESTNestedAdapter.create()
 });
 
 export default AnalysisModel;

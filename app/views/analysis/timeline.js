@@ -3,8 +3,8 @@ import Ember from "ember";
 /*
  * LoLImprove.Annotate.TimelineView
  */
-export default Ember.View.extend({
+export default Ember.CollectionView.extend({
   tagName: 'ul',
-  templateName: 'analysis/timeline',
-  classNames: ['li-timeline']
+  classNames: ['li-timeline'],
+  itemViewClass: 'analysis/timeline-entry'
 });

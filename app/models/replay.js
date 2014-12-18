@@ -1,9 +1,10 @@
 import Ember from "ember";
+import Model from "lolimprove-annotate/lib/lolimprove-model";
 import Serializers from "./attribute-serializers";
 
 var Bool = Serializers.Boolean;
 
-var ReplayModel = Ember.Model.extend({
+var ReplayModel = Model.extend({
   id:          Ember.attr(Number),
   champion:    Ember.attr(String),
   lane:        Ember.attr(String),
@@ -27,6 +28,7 @@ var ReplayModel = Ember.Model.extend({
 });
 
 ReplayModel.reopenClass({
+  modelName: 'replay',
   url: '/replays',
   adapter: Ember.RESTAdapter.create()
 });

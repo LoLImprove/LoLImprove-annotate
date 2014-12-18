@@ -1,4 +1,5 @@
 import Ember from "ember";
+import RESTNestedAdapter from "lolimprove-annotate/adapters/rest-nested-adapter";
 import Serializers from "./attribute-serializers";
 
 var Bool = Serializers.Boolean;
@@ -21,8 +22,9 @@ var UserModel = Ember.Model.extend({
 });
 
 UserModel.reopenClass({
+  modelName: 'user',
   url: '/users',
-  adapter: Ember.RESTAdapter.create()
+  adapter: RESTNestedAdapter.create()
 });
 
 export default UserModel;
